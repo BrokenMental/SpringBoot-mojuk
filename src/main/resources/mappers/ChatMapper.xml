@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace는 ChatMapper.java의 pakage경로와 맞춰줘야 함 -->
+<mapper namespace="inhatc.group.mojuk.Msg.ChatMapper">
+	<select id="chatSel" resultType="HashMap">
+		/* test Query */
+		SELECT * 
+		  FROM tb1
+	</select>
+</mapper>
