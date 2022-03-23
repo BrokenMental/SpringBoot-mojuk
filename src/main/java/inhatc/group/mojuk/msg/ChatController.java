@@ -1,6 +1,6 @@
-package inhatc.group.mojuk.Msg;
+package inhatc.group.mojuk.msg;
 
-import inhatc.group.mojuk.Model.ChatMessage;
+import inhatc.group.mojuk.model.ChatMessage;
 import lombok.AllArgsConstructor;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;

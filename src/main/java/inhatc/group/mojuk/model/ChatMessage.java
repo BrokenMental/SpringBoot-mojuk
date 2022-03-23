@@ -1,4 +1,4 @@
-package inhatc.group.mojuk.Model;
+package inhatc.group.mojuk.model;
 
 public class ChatMessage {
 

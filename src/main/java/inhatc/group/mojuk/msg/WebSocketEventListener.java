@@ -1,7 +1,7 @@
-package inhatc.group.mojuk.Msg;
+package inhatc.group.mojuk.msg;
 
-import inhatc.group.mojuk.Model.ChatMessage;
-import inhatc.group.mojuk.Model.MessageType;
+import inhatc.group.mojuk.model.ChatMessage;
+import inhatc.group.mojuk.model.MessageType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

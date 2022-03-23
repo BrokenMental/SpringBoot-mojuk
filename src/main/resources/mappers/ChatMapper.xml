@@ -3,7 +3,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- namespace는 ChatMapper.java의 pakage경로와 맞춰줘야 함 -->
-<mapper namespace="inhatc.group.mojuk.Msg.ChatMapper">
+<mapper namespace="inhatc.group.mojuk.msg.ChatMapper">
 	<select id="chatSel" resultType="HashMap">
 		/* test Query */
 		SELECT * 

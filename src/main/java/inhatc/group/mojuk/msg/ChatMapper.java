@@ -1,4 +1,4 @@
-package inhatc.group.mojuk.Msg;
+package inhatc.group.mojuk.msg;
 
 import java.util.List;
 import java.util.Map;
