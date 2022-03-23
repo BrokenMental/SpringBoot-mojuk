@@ -35,20 +35,6 @@ public class MojukGroupApplication extends SpringBootServletInitializer {
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
 		return builder.sources(MojukGroupApplication.class);
 	}
-
-	/*
-	 * mybatis mapper 설정
-	 */
-	@Bean
-    public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception{
-        SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
-        sessionFactory.setDataSource(dataSource);
-        
-        Resource[] res = new PathMatchingResourcePatternResolver().getResources("classpath:mappers/**/*Mapper.xml");
-        sessionFactory.setMapperLocations(res);
-        
-        return sessionFactory.getObject();
-    }
 	
 	/*
 	 * 여기에 루트경로를 추가하면 로그, parameter 전달 등 아무것도 못한다.
