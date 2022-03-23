@@ -1,20 +1,12 @@
 package inhatc.group.mojuk;
 
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.Banner.Mode;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
-import org.springframework.web.bind.annotation.GetMapping;
-
-import javax.sql.DataSource;
 
 @SpringBootApplication
 @EnableAspectJAutoProxy
@@ -35,13 +27,4 @@ public class MojukGroupApplication extends SpringBootServletInitializer {
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
 		return builder.sources(MojukGroupApplication.class);
 	}
-	
-	/*
-	 * 여기에 루트경로를 추가하면 로그, parameter 전달 등 아무것도 못한다.
-	 */
-	@GetMapping(value={"/", "/index"})
-	public String indexView() {
-		return "/index";
-	}
-
 }
