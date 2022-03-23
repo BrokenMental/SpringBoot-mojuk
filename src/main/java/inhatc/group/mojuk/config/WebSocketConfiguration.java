@@ -8,7 +8,7 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 
 @Configuration //Bean 설정 명시
 @EnableWebSocketMessageBroker //WebSocket 서버 활성화
-public class WebSocketConfig implements WebSocketMessageBrokerConfigurer { //WebSocket 연결 구성 메서드 제공
+public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer { //WebSocket 연결 구성 메서드 제공
 
     //클라이언트에서 다른 클라이언트로 메시지를 라우팅 할 때 사용될 메시지 브로커 구성
     @Override

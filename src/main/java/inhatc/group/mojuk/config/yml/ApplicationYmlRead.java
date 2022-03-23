@@ -1,4 +1,4 @@
-package inhatc.group.mojuk.config.ymlConfig;
+package inhatc.group.mojuk.config.yml;
 
 import lombok.Getter;
 import lombok.Setter;

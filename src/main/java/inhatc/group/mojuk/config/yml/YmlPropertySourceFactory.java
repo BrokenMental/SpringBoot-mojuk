@@ -1,4 +1,4 @@
-package inhatc.group.mojuk.config.ymlConfig;
+package inhatc.group.mojuk.config.yml;
 
 import org.springframework.beans.factory.config.YamlPropertiesFactoryBean;
 import org.springframework.core.env.PropertiesPropertySource;
