@@ -1,19 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>welcome mojuk</title>
+    <title>welcome mojuk</title>
+    <link th:href="@{/portfolio/css/portfolio.css}" rel="stylesheet">
 </head>
 <body>
+    <th:block th:include="./include/header.html"></th:block>
     <div class="outside-frame">
         <section class="inside-frame">
             <div class="content-frame">
-
+                <p class="under-bar">공지사항</p>
+                <div>
+                    리스트
+                </div>
             </div>
+
             <div class="content-frame">
-
+                <p class="under-bar">MOJUK</p>
             </div>
+
+            <div class="content-frame">
+                <p class="under-bar">포트폴리오</p>
+            </div>
+
+            <div class="content-frame">
+                <p class="under-bar">대회</p>
+            </div>
+
         </section>
     </div>
+
+    <!--<th:block th:include="./include/footer.html"></th:block>-->
+    <script th:src="@{/portfolio/js/portfolio.js}"></script>
 </body>
 </html>
