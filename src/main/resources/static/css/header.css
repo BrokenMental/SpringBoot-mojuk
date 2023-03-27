@@ -1,10 +1,25 @@
+.cursor-pointer {
+    cursor: pointer;
+}
+
 .outside-frame {
-    max-width: 70vw;
-    margin: auto;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
 }
 
 .inside-frame {
-    padding: 10px;
+    min-width: 80vw;
+    min-height: 50vh;
+}
+
+.inside-frame-header {
+    position: absolute;
+    right: 0;
+}
+
+.inside-frame-body {
 }
 
 .header-menu {
@@ -29,7 +44,7 @@ ul li {
 .content-frame {
     margin-bottom:10px;
     padding: 5px;
-    background: rgba(245, 245, 245, 0.7);
+    background: rgba(245, 245, 245, 0.9);
     border: 1px solid rgba(255, 255, 255, 0.5);
     outline: 1px solid rgba(0, 0, 0, 0.2);
     box-sizing: border-box;

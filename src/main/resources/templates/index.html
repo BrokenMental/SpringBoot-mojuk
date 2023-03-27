@@ -2,35 +2,42 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>welcome mojuk</title>
-    <link th:href="@{/portfolio/css/portfolio.css}" rel="stylesheet">
+    <link th:href="@{/css/index.css}" rel="stylesheet">
 </head>
 <body>
     <th:block th:include="./include/header.html"></th:block>
-    <div class="outside-frame">
-        <section class="inside-frame">
-            <div class="content-frame">
-                <p class="under-bar">공지사항</p>
-                <div>
-                    리스트
+    <section class="outside-frame">
+        <div class="inside-frame">
+            <div class="inside-frame-header">
+                <img id="main-logo-img" th:src="@{/img/mojuk(transparent).png}">
+            </div>
+            <div class="inside-frame-body">
+                <div class="content-frame main-logo-text-area">
+                    <span class="main-logo-text">MOJUK</span>
+                    <span class="main-logo-text">WELCOME</span>
+                    <span class="main-logo-text">HELLO</span>
+                    <span class="main-logo-text">WORLD</span>
+                    <span class="main-logo-text">ALGORITHM</span>
+                    <span class="main-logo-text">CODING</span>
+                    <span class="main-logo-text">PROGRAMING</span>
+                    <span class="main-logo-text">COMPUTER</span>
+                    <span class="main-logo-text">DATABASE</span>
+                </div>
+                <div class="content-frame main-enter-area">
+                    <div class="enter-area-group cursor-pointer" id="enter-page">
+                        <i class="fa-solid fa-location-dot" id="enter-icon"></i>
+                        <p>
+                            <label for="enter-icon" id="enter-text">
+                                <span class="enter-text-one">S</span><span class="enter-text-one">T</span><span class="enter-text-one">A</span><span class="enter-text-one">R</span><span class="enter-text-one">T</span><span class="enter-text-one">!</span>
+                            </label>
+                        </p>
+                    </div>
                 </div>
             </div>
-
-            <div class="content-frame">
-                <p class="under-bar">MOJUK</p>
-            </div>
-
-            <div class="content-frame">
-                <p class="under-bar">포트폴리오</p>
-            </div>
-
-            <div class="content-frame">
-                <p class="under-bar">대회</p>
-            </div>
-
-        </section>
-    </div>
+        </div>
+    </section>
 
     <!--<th:block th:include="./include/footer.html"></th:block>-->
-    <script th:src="@{/portfolio/js/portfolio.js}"></script>
+    <script th:src="@{/js/index.js}"></script>
 </body>
 </html>
