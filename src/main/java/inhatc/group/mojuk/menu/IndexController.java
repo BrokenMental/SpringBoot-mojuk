@@ -8,8 +8,13 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class IndexController {
     @GetMapping(value={"/", "/index"})
-    public String indexView() {
+    public String index() {
         return "/index";
+    }
+
+    @GetMapping(value="/select")
+    public String select() {
+        return "/select";
     }
 
     @GetMapping(value="/signOut")
