@@ -1,3 +1,43 @@
+#background-random-img {
+    background-image: url("/img/background/background01.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0.7;
+
+    margin: 0;
+    padding: 0;
+}
+
+#background-airplane-icon {
+    font-size: xx-large;
+    opacity: 0.7;
+
+    animation: airplane-fly 8s linear infinite;
+}
+
+@keyframes airplane-fly {
+    0% {
+        transform: translateX(-5vw) translateY(40vh) rotate(-8deg);
+        color: black;
+    }
+    100% {
+        transform: translateX(105vw) translateY(0vh) rotate(-15deg);
+        color: white;
+    }
+}
+
+@-webkit-keyframes airplane-fly {
+    0% {transform: translateX(-5vw) translateY(40vh) rotate(-8deg);}
+    100% {transform: translateX(105vw) translateY(0vh) rotate(-15deg);}
+}
+
 .content-frame {
     position: absolute;
     border: 1px solid;
@@ -19,6 +59,7 @@
 .main-logo-text-area {
     left: 10%;
 
+    transform: rotate(-5deg);
     -webkit-transform: rotate(-5deg);
     -moz-transform: rotate(-5deg);
 }
@@ -26,6 +67,7 @@
 .main-enter-area {
     right: 10%;
 
+    transform: rotate(5deg);
     -webkit-transform: rotate(5deg);
     -moz-transform: rotate(5deg);
 }
@@ -42,6 +84,7 @@
 #enter-icon {
     color: green;
     font-size: 72px;
+    text-shadow: 2px 0px 5px darkolivegreen;
 
     animation: up-down-motion 1s linear 0s infinite alternate;
 }
@@ -85,14 +128,17 @@
 }
 
 #enter-text {
+    color: white;
     font-weight: bold;
     font-size: 32px;
+    text-shadow: 2px 2px 0px #1565C0, 4px 4px 0px #0049cf, 6px 6px 0px #E3F2FD;
 }
 
 .main-logo-text {
     position: absolute;
     font-weight: bold;
     font-size: 78px;
+    text-shadow: 2px 2px 0px #1565C0, 4px 4px 0px #0049cf, 6px 6px 0px #E3F2FD;
 }
 
 .main-logo-text:nth-child(1) {
@@ -185,8 +231,11 @@
 
 @media(max-width:768px) {
     .content-frame {
-        min-width: 45vw;
-        min-height: 45vw;
+        width: 40vw;
+        height: 40vh;
+
+        min-width: 360px;
+        min-height: 360px;
     }
 
     .main-logo-text {
@@ -202,6 +251,28 @@
     }
 
     .inside-frame-header {
-        top: -20%;
+        top: -15%;
+    }
+
+    @keyframes airplane-fly {
+        0% {
+            transform: translateX(-5vw) translateY(20vh) rotate(-8deg);
+            color: black;
+        }
+        100% {
+            transform: translateX(105vw) translateY(0vh) rotate(-15deg);
+            color: white;
+        }
+    }
+
+    @-webkit-keyframes airplane-fly {
+        0% {
+            transform: translateX(-5vw) translateY(20vh) rotate(-8deg);
+            color: black;
+        }
+        100% {
+            transform: translateX(105vw) translateY(0vh) rotate(-15deg);
+            color: white;
+        }
     }
 }
