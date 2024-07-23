@@ -1,0 +1,278 @@
+#background-random-img {
+    background-image: url("/img/background/background01.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0.7;
+
+    margin: 0;
+    padding: 0;
+}
+
+#background-airplane-icon {
+    font-size: xx-large;
+    opacity: 0.7;
+
+    animation: airplane-fly 8s linear infinite;
+}
+
+@keyframes airplane-fly {
+    0% {
+        transform: translateX(-5vw) translateY(40vh) rotate(-8deg);
+        color: black;
+    }
+    100% {
+        transform: translateX(105vw) translateY(0vh) rotate(-15deg);
+        color: white;
+    }
+}
+
+@-webkit-keyframes airplane-fly {
+    0% {transform: translateX(-5vw) translateY(40vh) rotate(-8deg);}
+    100% {transform: translateX(105vw) translateY(0vh) rotate(-15deg);}
+}
+
+.content-frame {
+    position: absolute;
+    border: 1px solid;
+    min-height: 400px;
+    min-width: 400px;
+
+    height: 50vh;
+    width: 50vh;
+}
+
+.inside-frame-header {
+    top: 0;
+}
+
+#main-logo-img {
+    width: 60px;
+}
+
+.main-logo-text-area {
+    left: 10%;
+
+    transform: rotate(-5deg);
+    -webkit-transform: rotate(-5deg);
+    -moz-transform: rotate(-5deg);
+}
+
+.main-enter-area {
+    right: 10%;
+
+    transform: rotate(5deg);
+    -webkit-transform: rotate(5deg);
+    -moz-transform: rotate(5deg);
+}
+
+.enter-area-group {
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+
+    text-align: center;
+}
+
+#enter-icon {
+    color: green;
+    font-size: 72px;
+    text-shadow: 2px 0px 5px darkolivegreen;
+
+    animation: up-down-motion 1s linear 0s infinite alternate;
+}
+
+#enter-icon:hover {
+    color:yellow;
+}
+
+@keyframes up-down-motion {
+    0% {margin-top: 0px;}
+    100% {margin-top: 30px;}
+}
+
+@-webkit-keyframes up-down-motion {
+    0% {margin-top: 0px;}
+    100% {margin-top: 30px;}
+}
+
+.enter-text-one:nth-child(1):hover {
+    color:red;
+}
+
+.enter-text-one:nth-child(2):hover {
+    color:green;
+}
+
+.enter-text-one:nth-child(3):hover {
+    color:blue;
+}
+
+.enter-text-one:nth-child(4):hover {
+    color:orange;
+}
+
+.enter-text-one:nth-child(5):hover {
+    color:purple;
+}
+
+.enter-text-one:nth-child(6):hover {
+    color:yellow;
+}
+
+#enter-text {
+    color: white;
+    font-weight: bold;
+    font-size: 32px;
+    text-shadow: 2px 2px 0px #1565C0, 4px 4px 0px #0049cf, 6px 6px 0px #E3F2FD;
+}
+
+.main-logo-text {
+    position: absolute;
+    font-weight: bold;
+    font-size: 78px;
+    text-shadow: 2px 2px 0px #1565C0, 4px 4px 0px #0049cf, 6px 6px 0px #E3F2FD;
+}
+
+.main-logo-text:nth-child(1) {
+    top: 58%;
+    left: 45%;
+
+    color:green;
+
+    -webkit-transform: rotate(-75deg);
+    -moz-transform: rotate(-75deg);
+}
+
+.main-logo-text:nth-child(2) {
+    top: 20%;
+    left: 0%;
+
+    color:red;
+
+    -webkit-transform: rotate(35deg);
+    -moz-transform: rotate(35deg);
+}
+
+.main-logo-text:nth-child(3) {
+    top: 30%;
+    left: 5%;
+
+    color:deeppink;
+
+    -webkit-transform: rotate(-35deg);
+    -moz-transform: rotate(-35deg);
+}
+
+.main-logo-text:nth-child(4) {
+    top: 55%;
+    left: 0%;
+
+    color:brown;
+
+    -webkit-transform: rotate(15deg);
+    -moz-transform: rotate(15deg);
+}
+
+.main-logo-text:nth-child(5) {
+    top: 70%;
+    left: 0%;
+
+    color:blue;
+
+    -webkit-transform: rotate(-12deg);
+    -moz-transform: rotate(-12deg);
+}
+
+.main-logo-text:nth-child(6) {
+    top: 15%;
+    left: 40%;
+
+    color:purple;
+
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+}
+
+.main-logo-text:nth-child(7) {
+    top: 40%;
+    left: 0%;
+
+    color:orange;
+
+    -webkit-transform: rotate(-230deg);
+    -moz-transform: rotate(-230deg);
+}
+
+.main-logo-text:nth-child(8) {
+    top: 35%;
+    left: -25%;
+
+    color:gray;
+
+    -webkit-transform: rotate(100deg);
+    -moz-transform: rotate(100deg);
+}
+
+.main-logo-text:nth-child(9) {
+    top: 0%;
+    left: 5%;
+
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+}
+
+@media(max-width:768px) {
+    .content-frame {
+        width: 40vw;
+        height: 40vh;
+
+        min-width: 360px;
+        min-height: 360px;
+    }
+
+    .main-logo-text {
+        font-size: 46px;
+    }
+
+    .main-logo-text-area {
+        left: -5%;
+    }
+
+    .main-enter-area {
+        right: -5%;
+    }
+
+    .inside-frame-header {
+        top: -15%;
+    }
+
+    @keyframes airplane-fly {
+        0% {
+            transform: translateX(-5vw) translateY(20vh) rotate(-8deg);
+            color: black;
+        }
+        100% {
+            transform: translateX(105vw) translateY(0vh) rotate(-15deg);
+            color: white;
+        }
+    }
+
+    @-webkit-keyframes airplane-fly {
+        0% {
+            transform: translateX(-5vw) translateY(20vh) rotate(-8deg);
+            color: black;
+        }
+        100% {
+            transform: translateX(105vw) translateY(0vh) rotate(-15deg);
+            color: white;
+        }
+    }
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>sign mojuk</title>
+    <!--<link th:href="@{/portfolio/css/portfolio.css}" rel="stylesheet">-->
+</head>
+<body>
+    <th:block th:include="./include/header.html"></th:block>
+    <div class="outside-frame">
+        <section class="inside-frame">
+            <div class="content-frame">
+                <p>MOJUK 로그인</p>
+            </div>
+
+            <div class="content-frame">
+                <p class="under-bar">로그인</p>
+                <div>
+                    <p class="input-area">
+                        <label for="entrance_number">학번</label>
+                        <input type="text" id="entrance_number">
+                    </p>
+                    <p class="input-area">
+                        <label for="pswd">비밀번호</label>
+                        <input type="password" id="pswd">
+                    </p>
+                    <p class="btn-area">
+                        <input type="button" class="" value="Login">
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!--<th:block th:include="./include/footer.html"></th:block>-->
+    <!--<script th:src="@{/portfolio/js/portfolio.js}"></script>-->
+</body>
+</html>

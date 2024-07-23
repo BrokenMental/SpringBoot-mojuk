@@ -1,0 +1,9 @@
+-- MOJUK.PORTFOLIO definition
+
+CREATE TABLE `PORTFOLIO` (
+    `IDX` int(11) NOT NULL AUTO_INCREMENT,
+    `MEMBER_IDX` int(11) DEFAULT NULL,
+    `GITHUB_URL` varchar(200) DEFAULT NULL,
+    `REGDT` datetime DEFAULT current_timestamp(),
+    PRIMARY KEY (`IDX`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
