@@ -4,27 +4,38 @@
     <title>MOJUK</title>
     <link th:href="@{/css/index.css}" rel="stylesheet">
 </head>
-<th:block th:include="./include/header.html"></th:block>
+<th:block th:replace="~{include/header :: header}"></th:block>
 <body>
     <section id="background-random-img"></section>
     <i id="background-airplane-icon" class="fa-solid fa-plane"></i>
+    <div class="main-logo-text-area">
+        <span class="main-logo-text">MOJUK</span>
+        <span class="main-logo-text">WELCOME</span>
+        <span class="main-logo-text">HELLO</span>
+        <span class="main-logo-text">WORLD</span>
+        <span class="main-logo-text">ALGORITHM</span>
+        <span class="main-logo-text">CODING</span>
+        <span class="main-logo-text">PROGRAMING</span>
+        <span class="main-logo-text">COMPUTER</span>
+        <span class="main-logo-text">DATABASE</span>
+    </div>
+    <div class="main-logo-text-area">
+        <span class="main-logo-text">MOJUK</span>
+        <span class="main-logo-text">WELCOME</span>
+        <span class="main-logo-text">HELLO</span>
+        <span class="main-logo-text">WORLD</span>
+        <span class="main-logo-text">ALGORITHM</span>
+        <span class="main-logo-text">CODING</span>
+        <span class="main-logo-text">PROGRAMING</span>
+        <span class="main-logo-text">COMPUTER</span>
+        <span class="main-logo-text">DATABASE</span>
+    </div>
     <section class="outside-frame">
         <div class="inside-frame">
             <div class="inside-frame-header">
                 <img id="main-logo-img" th:src="@{/img/mojuk(transparent).png}">
             </div>
             <div class="inside-frame-body">
-                <div class="content-frame main-logo-text-area">
-                    <span class="main-logo-text">MOJUK</span>
-                    <span class="main-logo-text">WELCOME</span>
-                    <span class="main-logo-text">HELLO</span>
-                    <span class="main-logo-text">WORLD</span>
-                    <span class="main-logo-text">ALGORITHM</span>
-                    <span class="main-logo-text">CODING</span>
-                    <span class="main-logo-text">PROGRAMING</span>
-                    <span class="main-logo-text">COMPUTER</span>
-                    <span class="main-logo-text">DATABASE</span>
-                </div>
                 <div class="content-frame main-enter-area">
                     <div class="enter-area-group cursor-pointer" id="enter-page">
                         <i class="fa-solid fa-location-dot" id="enter-icon"></i>

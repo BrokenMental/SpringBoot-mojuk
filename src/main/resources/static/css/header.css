@@ -3,20 +3,17 @@
 }
 
 .outside-frame {
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%, -50%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
 }
 
 .inside-frame {
-    min-width: 80vw;
-    min-height: 50vh;
 }
 
 .inside-frame-header {
-    position: absolute;
-    right: 0;
 }
 
 .inside-frame-body {
@@ -42,9 +39,7 @@ ul li {
 }
 
 .content-frame {
-    margin-bottom:10px;
-    padding: 5px;
-    background: rgba(245, 245, 245, 0.7);
+    background: rgba(245, 245, 245, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.5);
     outline: 1px solid rgba(0, 0, 0, 0.2);
     box-sizing: border-box;
@@ -57,7 +52,7 @@ ul li {
 }
 
 @media(max-width:768px) {
-    .outside-frame {
+    /*.outside-frame {
         max-width: 90vw;
-    }
+    }*/
 }
