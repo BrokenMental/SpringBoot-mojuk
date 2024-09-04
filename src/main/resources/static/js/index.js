@@ -1,3 +1,3 @@
-document.getElementById('enter-page').onclick = e => {
+document.getElementById('enter-page-left').onclick = e => {
     location.href = '/select';
 }
