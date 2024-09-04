@@ -83,14 +83,43 @@ html, body {
     box-shadow: inset 0 1px 0 #dee2e6, inset 0 -1px 0 #dee2e6;
     padding: 10px;
     cursor: pointer;
+    position: absolute;
+}
+
+.main-enter-area:hover {
+    animation: fadeIn 0.5s forwards;
+}
+
+.main-enter-area:not(:hover) {
+     animation: fadeOut 0.5s forwards;
+ }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0.7;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0.7;
+    }
 }
 
 .main-enter-area:nth-of-type(1) {
     border-radius: 25px 0 0 25px;
+    left: 0;
 }
 
 .main-enter-area:nth-of-type(2) {
     border-radius: 0 25px 25px 0;
+    right: 0;
 }
 
 .inside-frame-header {
@@ -102,6 +131,7 @@ html, body {
     position: absolute;
     right: 10px;
     top: 10px;
+    z-index: 100;
 }
 
 .main-logo-text-area {
