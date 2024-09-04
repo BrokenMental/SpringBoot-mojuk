@@ -249,3 +249,5 @@ gradle-app.setting
 
 
 **/application.yml
+/.idea/dataSources.xml
+/.idea/git_toolbox_prj.xml
