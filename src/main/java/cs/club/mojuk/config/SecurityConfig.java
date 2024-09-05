@@ -23,8 +23,14 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(authorize -> authorize
-                // "/", "/register", "/css/**", "/js/**" 경로에 대한 접근은 모두 허용
-                .requestMatchers("/assets/**", "/css/**", "/js/**", "img/**").permitAll()
+                //접근 허용
+                .requestMatchers(
+                        // "/", 페이지 이동 접근
+                        "/history",
+
+                        // "/css/**", "/js/**" 정적 접근
+                        "/assets/**", "/css/**", "/js/**", "img/**"
+                ).permitAll()
                 // 나머지 요청은 인증된 사용자만 접근 가능
                 .anyRequest().authenticated()
         )

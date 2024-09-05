@@ -10,15 +10,6 @@
     width: 100%;
 }
 
-.inside-frame {
-}
-
-.inside-frame-header {
-}
-
-.inside-frame-body {
-}
-
 .header-menu {
     padding: 5px;
     min-height: 30px;
@@ -44,7 +35,4 @@ ul li {
 }
 
 @media(max-width:768px) {
-    /*.outside-frame {
-        max-width: 90vw;
-    }*/
 }
