@@ -3,19 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>mojuk history</title>
+    <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+          rel="stylesheet"
+    />
     <link rel="stylesheet" th:href="@{/css/history/history.css}">
 </head>
 <th:block th:replace="~{include/header :: header}"></th:block>
 <body>
     <section class="outside-frame">
         <div class="inside-frame">
-
+            <div class="swiper-pagination"></div>
         </div>
         <div class="inside-frame">
-
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">Slide 1</div>
+                    <div class="swiper-slide">Slide 2</div>
+                    <div class="swiper-slide">Slide 3</div>
+                </div>
+            </div>
         </div>
     </section>
-
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script th:src="@{/js/history/history.js}"></script>
 </body>
 </html>
