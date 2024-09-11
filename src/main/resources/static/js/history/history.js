@@ -26,3 +26,26 @@ const swiper = new Swiper('.swiper-container', {
 
     spaceBetween: 10,
 });
+
+// 데이터 생성
+const chartData = [
+    { id: 1, name: "CEO" },
+    { id: 2, pid: 1, name: "Vice President 1" },
+    { id: 3, pid: 1, name: "Vice President 2" },
+    { id: 4, pid: 2, name: "Manager 1" },
+    { id: 5, pid: 2, name: "Manager 2" },
+    { id: 6, pid: 3, name: "Manager 3" }
+];
+
+// OrgChart 초기화
+const chart = new OrgChart(document.getElementById("tree"), {
+    nodes: chartData,
+    nodeBinding: {
+        field_0: "name"
+    },
+    // 옵션 설정 (커스터마이징 가능)
+    layout: OrgChart.mixed,
+    template: "diva",
+    enableSearch: false,
+    nodeMouseClick: OrgChart.action.none
+});

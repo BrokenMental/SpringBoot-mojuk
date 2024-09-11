@@ -4,6 +4,7 @@
 }
 
 .inside-frame {
+    position: relative;
     width: 100%;
     border: 1px solid;
     box-sizing: border-box;
@@ -48,3 +49,12 @@
     background: #007bff;       /* 선택된 숫자(도트) 배경 색상 변경 */
     color: #fff;               /* 선택된 숫자 색상 */
 }
+
+
+/* OrgChart */
+#tree {
+    width: 100%;
+    min-height: 400px;
+    border: 1px solid #ddd;
+}
+/* OrgChart */
