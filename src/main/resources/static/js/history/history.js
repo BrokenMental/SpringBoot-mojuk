@@ -47,5 +47,6 @@ const chart = new OrgChart(document.getElementById("tree"), {
     layout: OrgChart.mixed,
     template: "diva",
     enableSearch: false,
-    nodeMouseClick: OrgChart.action.none
+    nodeMouseClick: OrgChart.action.none,
+    mouseScrool: OrgChart.action.none,
 });

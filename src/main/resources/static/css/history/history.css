@@ -20,7 +20,12 @@
 
 .swiper-container {
     max-width: 100%;
+    height: 100%;
     overflow-x: hidden;
+}
+
+.swiper-slide-body {
+    height: 100%;
 }
 
 .swiper-pagination {
@@ -55,6 +60,7 @@
 #tree {
     width: 100%;
     min-height: 400px;
+    height: 100%;
     border: 1px solid #ddd;
 }
 /* OrgChart */
