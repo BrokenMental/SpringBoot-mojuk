@@ -24,6 +24,9 @@
     height: 100%;
     overflow-x: hidden;
 }
+.swiper-slide-body {
+    height: 96%;
+}
 .swiper-pagination {
     position: absolute;
     top: 10px !important;
@@ -48,7 +51,6 @@
     background: #007bff;       /* 선택된 숫자(도트) 배경 색상 변경 */
     color: #fff;               /* 선택된 숫자 색상 */
 }
-
 /* swiper */
 
 /* list.js */
@@ -78,7 +80,6 @@ h3 {
 p {
   margin:0;
 }
-
 input {
   border:solid 1px #ccc;
   border-radius: 5px;
