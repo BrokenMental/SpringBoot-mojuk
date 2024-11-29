@@ -27,27 +27,26 @@ const swiper = new Swiper('.swiper-container', {
     spaceBetween: 10,
 });
 
+/* List.js */
 const options = {
-    valueNames: [ 'name', 'born' ],
-    item: '<li><h3 class="name"></h3><p class="born"></p></li>'
+    valueNames: [ 'name', 'studentNumber' ],
+    item: '<li><h3 class="name"></h3><p class="studentNumber"></p></li>'
 };
 
+//sample
 const values = [{
-    name: 'Jonny Strömberg',
-    born: 1986
+    name: '하진욱',
+    studentNumber: '2012',
   },
   {
-    name: 'Jonas Arnklint',
-    born: 1985
+    name: '류성민',
+    studentNumber: '2013',
   },
   {
-    name: 'Martina Elm',
-    born: 1986
+    name: '송우현',
+    studentNumber: '2016',
 }];
 
 const userList = new List('users', options, values);
-
-userList.add({
-  name: "Gustaf Lindqvist",
-  born: 1983
-});
+//userList.add({name: "Gustaf Lindqvist", born: 1983});
+/* List.js */

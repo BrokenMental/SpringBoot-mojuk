@@ -24,9 +24,18 @@
     height: 100%;
     overflow-x: hidden;
 }
-.swiper-slide-body {
-    height: 96%;
+
+.swiper-slide {
+    padding: 0 10px;
+    max-width: calc(100vw - 20px);
 }
+
+.swiper-slide-body {
+    padding: 10px;
+    height: 96%;
+    box-sizing: border-box;
+}
+
 .swiper-pagination {
     position: absolute;
     top: 10px !important;
@@ -35,109 +44,125 @@
     gap: 40px;
     z-index: 10; /* 슬라이더랑 겹치면 위로 오도록 함 */
 }
+
 /* 숫자(도트) 스타일 조정 */
 .swiper-pagination .swiper-pagination-bullet {
-    width: auto;               /* 기본 도트 크기를 해제하고 숫자 크기에 맞게 조정 */
-    height: 30px;              /* 높이도 자동 조정 */
-    padding: 10px 15px;        /* 크기 확대 효과 */
-    font-size: 21px;           /* 숫자 크기 조정 */
-    background: #000;          /* 배경색 설정 */
-    color: #fff;               /* 텍스트 색상 설정 */
-    border-radius: 10px;       /* 약간의 둥근 모서리 추가 */
-    opacity: 1;                /* 투명도를 없애고 명확하게 표시 */
+    width: auto; /* 기본 도트 크기를 해제하고 숫자 크기에 맞게 조정 */
+    height: 30px; /* 높이도 자동 조정 */
+    padding: 10px 15px; /* 크기 확대 효과 */
+    font-size: 21px; /* 숫자 크기 조정 */
+    background: #000; /* 배경색 설정 */
+    color: #fff; /* 텍스트 색상 설정 */
+    border-radius: 10px; /* 약간의 둥근 모서리 추가 */
+    opacity: 1; /* 투명도를 없애고 명확하게 표시 */
     transition: background 0.3s ease; /* 호버 시 배경색 변경 효과 추가 */
 }
+
 .swiper-pagination .swiper-pagination-bullet-active {
-    background: #007bff;       /* 선택된 숫자(도트) 배경 색상 변경 */
-    color: #fff;               /* 선택된 숫자 색상 */
+    background: #007bff; /* 선택된 숫자(도트) 배경 색상 변경 */
+    color: #fff; /* 선택된 숫자 색상 */
 }
 /* swiper */
 
 /* list.js */
 .list {
-  font-family:sans-serif;
-  margin:0;
-  padding:20px 0 0;
+    font-family: sans-serif;
+    margin: 0;
+    padding: 20px 0 0;
 }
+
 .list > li {
-  display:block;
-  background-color: #eee;
-  padding:10px;
-  box-shadow: inset 0 1px 0 #fff;
+    display: block;
+    background-color: #eee;
+    padding: 10px;
+    box-shadow: inset 0 1px 0 #fff;
 }
+
 .avatar {
-  max-width: 150px;
+    max-width: 150px;
 }
+
 img {
-  max-width: 100%;
+    max-width: 100%;
 }
+
 h3 {
-  font-size: 16px;
-  margin:0 0 0.3rem;
-  font-weight: normal;
-  font-weight:bold;
+    font-size: 16px;
+    margin: 0 0 0.3rem;
+    font-weight: normal;
+    font-weight: bold;
 }
+
 p {
-  margin:0;
+    margin: 0;
 }
+
 input {
-  border:solid 1px #ccc;
-  border-radius: 5px;
-  padding:7px 14px;
-  margin-bottom:10px
+    border: solid 1px #ccc;
+    border-radius: 5px;
+    padding: 7px 14px;
+    margin-bottom: 10px
 }
+
 input:focus {
-  outline:none;
-  border-color:#aaa;
+    outline: none;
+    border-color: #aaa;
 }
+
 .sort {
-  padding:8px 30px;
-  border-radius: 6px;
-  border:none;
-  display:inline-block;
-  color:#fff;
-  text-decoration: none;
-  background-color: #28a8e0;
-  height:30px;
+    padding: 8px 30px;
+    border-radius: 6px;
+    border: none;
+    display: inline-block;
+    color: #fff;
+    text-decoration: none;
+    background-color: #28a8e0;
+    height: 30px;
+    cursor: pointer;
 }
+
 .sort:hover {
-  text-decoration: none;
-  background-color:#1b8aba;
+    text-decoration: none;
+    background-color: #1b8aba;
 }
+
 .sort:focus {
-  outline:none;
+    outline: none;
 }
+
 .sort:after {
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-bottom: 5px solid transparent;
-  content:"";
-  position: relative;
-  top:-10px;
-  right:-5px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    content: "";
+    position: relative;
+    top: -10px;
+    right: -5px;
 }
+
 .sort.asc:after {
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 5px solid #fff;
-  content:"";
-  position: relative;
-  top:13px;
-  right:-5px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #fff;
+    content: "";
+    position: relative;
+    top: 13px;
+    right: -5px;
 }
+
 .sort.desc:after {
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-bottom: 5px solid #fff;
-  content:"";
-  position: relative;
-  top:-10px;
-  right:-5px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid #fff;
+    content: "";
+    position: relative;
+    top: -10px;
+    right: -5px;
 }
 /* list.js */
