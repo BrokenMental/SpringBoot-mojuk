@@ -248,6 +248,6 @@ gradle-app.setting
 # End of https://www.toptal.com/developers/gitignore/api/eclipse,intellij,java,java-web,gradle,windows
 
 
-**/application.yml
+**/application*.yml
 /.idea/dataSources.xml
 /.idea/git_toolbox_prj.xml
