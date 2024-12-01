@@ -28,23 +28,38 @@ const swiper = new Swiper('.swiper-container', {
 });
 
 /* List.js */
+const club_role = {
+    0: '지도교수',
+    1: '회장',
+    2: '부회장',
+    3: '학년부장',
+    4: '회원'
+}
+
 const options = {
-    valueNames: [ 'name', 'studentNumber' ],
-    item: '<li><h3 class="name"></h3><p class="studentNumber"></p></li>'
+    valueNames: [ 'clubLevel', 'name', 'studentNumber' ],
+    item: '<li>' +
+        '<span class="clubLevel"></span>' +
+        '<h3 class="name"></h3>' +
+        '<p class="studentNumber"></p>' +
+        '</li>'
 };
 
-//sample
+//sample(level 1: 회장, 2: 부회장, 3: 학년부장, 4: 회원)
 const values = [{
-    name: '하진욱',
+    name: 'A',
     studentNumber: '2012',
+    clubLevel: club_role[1],
   },
   {
-    name: '류성민',
+    name: 'B',
     studentNumber: '2013',
+    clubLevel: club_role[2]
   },
   {
-    name: '송우현',
+    name: 'C',
     studentNumber: '2016',
+    clubLevel: club_role[4]
 }];
 
 const userList = new List('users', options, values);
