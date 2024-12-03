@@ -166,3 +166,10 @@ input:focus {
     right: -5px;
 }
 /* list.js */
+
+
+i {
+    cursor: pointer;
+    font-size: 22px;
+    margin: 4px;
+}

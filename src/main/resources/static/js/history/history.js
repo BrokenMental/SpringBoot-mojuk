@@ -42,6 +42,10 @@ const options = {
         '<span class="clubLevel"></span>' +
         '<h3 class="name"></h3>' +
         '<p class="studentNumber"></p>' +
+        '<div>' +
+        '<i class="fa-brands fa-git-alt"></i>' +
+        '<i class="fa-solid fa-house"></i>' +
+        '</div>' +
         '</li>'
 };
 
