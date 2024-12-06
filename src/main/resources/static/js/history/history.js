@@ -68,4 +68,20 @@ const values = [{
 
 const userList = new List('users', options, values);
 //userList.add({name: "Gustaf Lindqvist", born: 1983});
+
+
+userList.on('updated', function () {
+    const listItems = document.querySelectorAll('#users ul.list li');
+
+    listItems.forEach((item, index) => {
+        // 아이콘 예: 첫 번째 아이콘에 클릭 이벤트 추가
+        const gitIcon = item.querySelector('.fa-git-alt');
+        if (gitIcon) {
+            gitIcon.addEventListener('click', function () {
+                alert(`Git 아이콘 클릭 - 이름: ${item.querySelector('.name').textContent}`);
+            });
+        }
+    });
+});
+
 /* List.js */
