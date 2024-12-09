@@ -66,22 +66,30 @@ const values = [{
     clubLevel: club_role[4]
 }];
 
-const userList = new List('users', options, values);
+const userList = new List('usersContainer', options, values);
 //userList.add({name: "Gustaf Lindqvist", born: 1983});
 
+const usersContainer = document.getElementById('usersContainer');
+usersContainer.addEventListener('click', function(e) {
+    //git 버튼
+    if(e.target.classList.contains('fa-git-alt')) {
+        const inli = e.target.closest('li');
+        const clubLevel = inli.querySelector('.clubLevel').textContent;
+        const name = inli.querySelector('.name').textContent;
+        const studentNumber = inli.querySelector('.studentNumber').textContent;
 
-userList.on('updated', function () {
-    const listItems = document.querySelectorAll('#users ul.list li');
+        console.log(`${clubLevel} ${name} ${studentNumber}`);
+    }
 
-    listItems.forEach((item, index) => {
-        // 아이콘 예: 첫 번째 아이콘에 클릭 이벤트 추가
-        const gitIcon = item.querySelector('.fa-git-alt');
-        if (gitIcon) {
-            gitIcon.addEventListener('click', function () {
-                alert(`Git 아이콘 클릭 - 이름: ${item.querySelector('.name').textContent}`);
-            });
-        }
-    });
+    //홈페이지 버튼
+    if(e.target.classList.contains('fa-house')) {
+        const inli = e.target.closest('li');
+        const clubLevel = inli.querySelector('.clubLevel').textContent;
+        const name = inli.querySelector('.name').textContent;
+        const studentNumber = inli.querySelector('.studentNumber').textContent;
+
+        console.log(`${clubLevel} ${name} ${studentNumber}`);
+    }
 });
 
 /* List.js */
