@@ -5,30 +5,24 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "student")
-public record Student(
+public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int idx,
-    int manage_year,
-    Date date,
-    @Column
-    Integer level_idx,
-    @Column(length = 200)
-    String name,
-    @Column(length = 200)
-    String git,
-    @Column(length = 200)
-    String homepage,
-    @Column
-    Date mod_date,
-    @Column
-    Date reg_date,
-    @Column(length = 200)
-    String current_timestamp,
-
-    @ManyToOne                       // 다대일 관계 매핑
-    @JoinColumn(name = "level_idx")
-    Level level
-) {
+    private int idx;
+    private int manage_year;
+    private Date date;
+    @Column(nullable = true)
+    private Integer level_idx;
+    @Column(nullable = true, length = 200)
+    private String name;
+    @Column(nullable = true, length = 200)
+    private String git;
+    @Column(nullable = true, length = 200)
+    private String homepage;
+    @Column(nullable = true)
+    private Date mod_date;
+    @Column(nullable = true)
+    private Date reg_date;
+    @Column(nullable = true, length = 200)
+    private String current_timestamp;
 }

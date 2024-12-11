@@ -2,22 +2,15 @@ package cs.club.mojuk.entity;
 
 import jakarta.persistence.*;
 
-import java.util.List;
-
 @Entity
-@Table(name = "level")
-public record Level(
+public class Level {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int idx,
-    int label,
+    private int idx;
+    private int label;
     @Column(length = 10)
-    String varchar,
-    int auto_increment,
+    private String varchar;
+    private int auto_increment;
     @Column(length = 200)
-    String comment,
-
-    @OneToMany(mappedBy = "level")
-    List<Student> students
-) {
+    private String comment;
 }
