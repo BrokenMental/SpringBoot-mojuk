@@ -8,7 +8,6 @@ import cs.club.mojuk.repository.ManageYearRepository;
 import cs.club.mojuk.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,11 +28,11 @@ public class HistoryService {
     }
 
     public List<Student> getStudentsByManageYear(int manageYear) {
-        return studentRepository.findByManage_year(manageYear);
+        return studentRepository.findByManageYear(manageYear);
     }
 
     public List<Student> getStudentsByManageYearAndLevelIdx(int manageYear, int levelIdx) {
-        return studentRepository.findByManage_yearAndLevel_idx(manageYear, levelIdx);
+        return studentRepository.findByManageYearAndLevel_idx(manageYear, levelIdx);
     }
 
     public Optional<Level> getLevelByIdx(int levelIdx) {
@@ -45,14 +44,14 @@ public class HistoryService {
     }
 
     public List<ManageYear> getAllManageYears() {
-        return manageYearRepository.findAllByOrderByYearDesc();
+        return manageYearRepository.findAllByOrderByManageYearDesc();
     }
 
-    public LocalDateTime getLatestManageYear() {
+    public int getLatestManageYear() {
         List<ManageYear> manageYears = getAllManageYears();
         if (!manageYears.isEmpty()) {
-            return manageYears.get(0).getManage_year();
+            return manageYears.get(0).getManageYear();
         }
-        return null; // 기본값 null 반환
+        return 0; // 기본값 0 반환
     }
 }

@@ -18,11 +18,13 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int manage_year;
+    @Column(name = "manage_year")
+    private int manageYear;
     @ManyToOne
     @JoinColumn(name = "level_idx")
     private Level level;
-    private int entrance_year;
+    @Column(name = "entrance_year")
+    private int entranceYear;
     private String name;
     private String git;
     private String homepage;

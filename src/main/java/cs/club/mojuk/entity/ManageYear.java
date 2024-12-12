@@ -6,8 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
-
 @Entity
 @Table(name = "manage_year")
 @Getter
@@ -17,5 +15,6 @@ import java.time.LocalDateTime;
 public class ManageYear {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private LocalDateTime manage_year;
+    @Column(name = "manage_year")
+    private int manageYear;
 }
