@@ -1,28 +1,32 @@
 package cs.club.mojuk.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "student")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idx;
+    private int id;
     private int manage_year;
-    private Date date;
-    @Column(nullable = true)
-    private Integer level_idx;
-    @Column(nullable = true, length = 200)
+    @ManyToOne
+    @JoinColumn(name = "level_idx")
+    private Level level;
+    private int entrance_year;
     private String name;
-    @Column(nullable = true, length = 200)
     private String git;
-    @Column(nullable = true, length = 200)
     private String homepage;
-    @Column(nullable = true)
-    private Date mod_date;
-    @Column(nullable = true)
-    private Date reg_date;
-    @Column(nullable = true, length = 200)
-    private String current_timestamp;
+    private LocalDateTime mod_date;
+    private LocalDateTime reg_date;
+    private LocalDateTime current_timestamp;
 }
