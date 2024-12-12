@@ -1,9 +1,14 @@
 package cs.club.mojuk.menu.history;
 
 import cs.club.mojuk.entity.Level;
+import cs.club.mojuk.entity.ManageYear;
 import cs.club.mojuk.entity.Student;
+import cs.club.mojuk.repository.LevelRepository;
+import cs.club.mojuk.repository.ManageYearRepository;
+import cs.club.mojuk.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,13 +16,16 @@ import java.util.Optional;
 public class HistoryService {
     private final StudentRepository studentRepository;
     private final LevelRepository levelRepository;
+    private final ManageYearRepository manageYearRepository;
 
     public HistoryService(
             StudentRepository studentRepository,
-            LevelRepository levelRepository
+            LevelRepository levelRepository,
+            ManageYearRepository manageYearRepository
     ) {
         this.studentRepository = studentRepository;
         this.levelRepository = levelRepository;
+        this.manageYearRepository = manageYearRepository;
     }
 
     public List<Student> getStudentsByManageYear(int manageYear) {
@@ -36,8 +44,15 @@ public class HistoryService {
         return studentRepository.findAll();
     }
 
-    public int getLatestManageYear() {
-        Student latestStudent = studentRepository.findTopByOrderByManage_yearDesc();
-        return latestStudent.getManage_year();
+    public List<ManageYear> getAllManageYears() {
+        return manageYearRepository.findAllByOrderByYearDesc();
+    }
+
+    public LocalDateTime getLatestManageYear() {
+        List<ManageYear> manageYears = getAllManageYears();
+        if (!manageYears.isEmpty()) {
+            return manageYears.get(0).getManage_year();
+        }
+        return null; // 기본값 null 반환
     }
 }

@@ -1,4 +1,4 @@
-package cs.club.mojuk.menu.history;
+package cs.club.mojuk.repository;
 
 import cs.club.mojuk.entity.Level;
 import cs.club.mojuk.entity.Student;

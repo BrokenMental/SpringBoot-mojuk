@@ -1,5 +1,6 @@
 package cs.club.mojuk.menu.history;
 
+import cs.club.mojuk.entity.ManageYear;
 import cs.club.mojuk.entity.Student;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,8 +21,8 @@ public class HistoryController {
 
     @GetMapping("/history")
     public String history(Model model) {
-        int latestManageYear = historyService.getLatestManageYear();
-        model.addAttribute("latestManageYear", latestManageYear);
+        List<ManageYear> manageYears = historyService.getAllManageYears();
+        model.addAttribute("manageYears", manageYears);
         return "history/index";
     }
 

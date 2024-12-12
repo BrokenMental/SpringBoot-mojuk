@@ -1,4 +1,4 @@
-package cs.club.mojuk.menu.history;
+package cs.club.mojuk.repository;
 
 import cs.club.mojuk.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,5 +9,4 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
     List<Student> findByManage_year(int manageYear);
     List<Student> findByManage_yearAndLevel_idx(int manageYear, int levelIdx);
     List<Student> findAll();
-    Student findTopByOrderByManage_yearDesc();
 }
