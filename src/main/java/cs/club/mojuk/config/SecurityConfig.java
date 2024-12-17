@@ -29,7 +29,10 @@ public class SecurityConfig {
                         "/history",
 
                         // "/css/**", "/js/**" 정적 접근
-                        "/assets/**", "/css/**", "/js/**", "img/**"
+                        "/assets/**", "/css/**", "/js/**", "img/**",
+
+                        //history 페이지 접근
+                        "/history/**"
                 ).permitAll()
                 // 나머지 요청은 인증된 사용자만 접근 가능
                 .anyRequest().authenticated()

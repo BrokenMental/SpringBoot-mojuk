@@ -30,5 +30,4 @@ public class Student {
     private String homepage;
     private LocalDateTime mod_date;
     private LocalDateTime reg_date;
-    private LocalDateTime current_timestamp;
 }

@@ -27,6 +27,17 @@ const swiper = new Swiper('.swiper-container', {
     spaceBetween: 10,
 });
 
+const manageYearList = () => {
+    axios.get('/history/manageYears')
+        .then((res) => {
+            console.log(res.data);
+        }).catch((err) => {
+
+        });
+}
+
+manageYearList();
+
 /* List.js */
 const club_role = {
     0: '지도교수',
