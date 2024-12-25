@@ -10,8 +10,8 @@ const swiper = new Swiper('.swiper-container', {
         el: '.swiper-pagination',
         clickable: true,
         renderBullet: function (index, className) {
-            const years = [2021, 2022, 2023];
-            return `<span class="${className}">${years[index]}</span>`;
+            //const years = [2021, 2022, 2023];
+            return `<span class="${className}"></span>`;
         },
     },
 
@@ -27,13 +27,29 @@ const swiper = new Swiper('.swiper-container', {
     spaceBetween: 10,
 });
 
-const manageYearList = () => {
-    axios.get('/history/manageYears')
-        .then((res) => {
-            console.log(res.data);
-        }).catch((err) => {
+const manageYearList = async () => {
+    try {
+    const response = await axios.get('/history/manageYears');
+    const years = response.data.map(yearList => yearList.manageYear);
 
-        });
+    // Swiper 슬라이드 업데이트
+    swiper.removeAllSlides();
+    years.forEach((year, index) => {
+        swiper.appendSlide(`<div class="swiper-slide">Slide ${index + 1}</div>`);
+    });
+
+    // 페이지네이션 업데이트
+    swiper.pagination.render();
+    swiper.pagination.update();
+
+    // 페이지네이션 불릿에 연도 데이터 추가
+    const bullets = document.querySelectorAll('.swiper-pagination .swiper-pagination-bullet');
+    bullets.forEach((bullet, index) => {
+        bullet.textContent = years[index];
+    });
+    } catch (error) {
+        console.error('데이터를 가져오는 중 오류가 발생했습니다:', error);
+    }
 }
 
 manageYearList();
