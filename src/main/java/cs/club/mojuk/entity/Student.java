@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int idx;
     @Column(name = "manage_year")
     private int manageYear;
     @ManyToOne

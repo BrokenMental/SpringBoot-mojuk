@@ -31,8 +31,8 @@ public class HistoryController {
     }
 
     @ResponseBody
-    @GetMapping("/history/list")
-    public List<Student> getHistory(@RequestParam int manageYear) {
+    @GetMapping("/history/studentList")
+    public List<Student> getStudentList(@RequestParam("manageYear") int manageYear) {
         return historyService.getStudentsByManageYear(manageYear);
     }
 }

@@ -16,5 +16,5 @@ public class Level {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idx;
-    private int label;
+    private String label;
 }
