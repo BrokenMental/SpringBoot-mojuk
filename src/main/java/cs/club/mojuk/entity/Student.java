@@ -28,6 +28,7 @@ public class Student {
     private String name;
     private String git;
     private String homepage;
+    private String messenger;
     private LocalDateTime mod_date;
     private LocalDateTime reg_date;
 }
