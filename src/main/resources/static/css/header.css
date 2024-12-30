@@ -34,5 +34,23 @@ ul li {
     border-bottom: 1px solid;
 }
 
+.btn-area {
+    cursor: pointer;
+}
+
+.btn-area > div:hover {
+    opacity: 0.8;
+}
+
+.btn-back-circle {
+    z-index: 1000;
+    display: block !important;
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid;
+    top: 2.5%;
+    left: 2%;
+}
+
 @media(max-width:768px) {
 }
