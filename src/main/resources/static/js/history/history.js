@@ -37,7 +37,7 @@ const manageYearList = async () => {
         years.forEach((year, index) => {
             //swiper-slide 클래스 elements 하위 요소 추가
             swiper.appendSlide(`<div class="swiper-slide">
-<div class="swiper-slide-header">Slide ${index + 1}</div>
+<div class="swiper-slide-header">${year} mojuk</div>
 <div class="swiper-slide-body">
     <div id="usersContainer_${year}">
         <input class="search" placeholder="검색" />
