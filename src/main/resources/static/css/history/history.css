@@ -26,8 +26,11 @@
 }
 
 .swiper-slide {
-    padding: 0 0.63%; /*9px;*/
-    max-width: calc(100vw - 20px);
+
+}
+
+.swiper-slide-header {
+    padding: 5px 10px;
 }
 
 .swiper-slide-body {
