@@ -32,7 +32,13 @@ public class SecurityConfig {
                         "/assets/**", "/css/**", "/js/**", "img/**",
 
                         //history 페이지 접근
-                        "/history/**"
+                        "/history/**",
+
+                        //talk 페이지 접근
+                        "/talk/**",
+
+                        //websocket 접근
+                        "/ws/**"
                 ).permitAll()
                 // 나머지 요청은 인증된 사용자만 접근 가능
                 .anyRequest().authenticated()
