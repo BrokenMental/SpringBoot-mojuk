@@ -30,3 +30,8 @@ function displayMessage(message) {
     messageElement.textContent = message;
     messageContainer.appendChild(messageElement);
 }
+
+function joinRoom(roomId) {
+    // 서버에 특정 채팅방에 입장한다고 알리는 로직
+    sendMessage(roomId, 'system', 'join');
+}
