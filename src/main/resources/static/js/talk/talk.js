@@ -15,12 +15,14 @@ socket.onmessage = function(event) {
 };
 
 // 서버로 메시지 전송
-function sendMessage(content) {
-    if (socket.readyState === WebSocket.OPEN) {
-        socket.send(content); // 메시지 전송
-    } else {
-        console.error('WebSocket 연결이 닫혀 있습니다.');
-    }
+function sendMessage(roomId, sender, content) {
+    const message = {
+        roomId: roomId,
+        sender: sender,
+        content: content
+    };
+
+    socket.send(JSON.stringify(message)); // 메시지 전송
 }
 
 // 메시지를 화면에 추가하는 함수

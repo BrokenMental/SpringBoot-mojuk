@@ -1,7 +1,7 @@
 package cs.club.mojuk.config.webSocket;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import cs.club.mojuk.menu.talk.TalkRoomRepository;
+import cs.club.mojuk.repository.TalkRoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

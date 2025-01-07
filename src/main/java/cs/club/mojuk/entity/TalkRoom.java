@@ -1,16 +1,29 @@
-package cs.club.mojuk.menu.talk;
+package cs.club.mojuk.entity;
 
+import cs.club.mojuk.menu.talk.TalkMessage;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.web.socket.WebSocketSession;
 
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+@Entity
+@Table(name = "talk_room")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class TalkRoom {
+
+    @Id
+    @Column(name = "roomId")
     private String roomId;
+
+    @Transient
     private Set<WebSocketSession> sessions = ConcurrentHashMap.newKeySet();
 
     // roomId를 매개변수로 받는 생성자
