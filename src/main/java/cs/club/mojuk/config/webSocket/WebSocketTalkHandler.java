@@ -30,9 +30,14 @@ public class WebSocketTalkHandler extends TextWebSocketHandler {
 
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+        // 클라이언트로부터 받은 메시지를 TalkMessage 객체로 변환
         TalkMessage talkMessage = objectMapper.readValue(message.getPayload(), TalkMessage.class);
+
+        // 해당 방이 존재하지 않으면 생성
         TalkRoom talkRoom = talkRoomRepository.findOrCreateRoom(talkMessage.getRoomId());
-        talkRoom.handleMessage(session, talkMessage);
+
+        // 방 내의 모든 클라이언트에게 메시지 전송
+        talkRoom.handleMessage(session, talkMessage, objectMapper);
     }
 
     @Override
