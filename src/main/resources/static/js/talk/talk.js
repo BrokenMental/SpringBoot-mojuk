@@ -26,7 +26,7 @@ function connect() {
     return socket;
 }
 
-const socket = connect();
+let socket = connect();
 
 // 메시지를 화면에 추가하는 함수
 function displayMessage(message) {
@@ -37,22 +37,26 @@ function displayMessage(message) {
 }
 
 // 서버로 메시지 전송
-function sendMessage(roomId, sender, content) {
+function sendMessage(type, roomId, sender, content) {
     if (isOpen(socket)) {
+        if(!type) type = 'CONNECTING';
+
         socket.send(JSON.stringify({
+            type: type,
             roomId: roomId,
             sender: sender,
             content: content
         }));
     } else {
         console.error('WebSocket 연결이 닫혀 있어 메시지를 전송할 수 없습니다.');
+        socket = connect();
         // 필요에 따라 재연결 로직 추가
     }
 }
 
 function joinRoom(roomId) {
     // 서버에 특정 채팅방에 입장한다고 알리는 로직
-    sendMessage(roomId, 'system', 'join');
+    sendMessage('JOIN', roomId, 'system', 'join');
 }
 
 //소캣 열린상태인지 확인

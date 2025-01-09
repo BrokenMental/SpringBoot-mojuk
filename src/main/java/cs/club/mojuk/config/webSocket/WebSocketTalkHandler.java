@@ -25,7 +25,7 @@ public class WebSocketTalkHandler extends TextWebSocketHandler {
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-        sessions.add(session);
+        //sessions.add(session);
     }
 
     @Override
@@ -33,15 +33,35 @@ public class WebSocketTalkHandler extends TextWebSocketHandler {
         // 클라이언트로부터 받은 메시지를 TalkMessage 객체로 변환
         TalkMessage talkMessage = objectMapper.readValue(message.getPayload(), TalkMessage.class);
 
-        // 해당 방이 존재하지 않으면 생성
-        TalkRoom talkRoom = talkRoomRepository.findOrCreateRoom(talkMessage.getRoomId());
+        //방 이름 확인
+        String roomId = talkMessage.getRoomId();
 
-        // 방 내의 모든 클라이언트에게 메시지 전송
+        //해당 방이 존재하지 않으면 생성
+        TalkRoom talkRoom = talkRoomRepository.findOrCreateRoom(roomId);
+
+        if ("JOIN".equals(talkMessage.getType())) {
+            //sessions.remove(session);
+            talkRoom.addSession(session);
+            // 세션에 roomId 저장
+            session.getAttributes().put("roomId", roomId);
+
+            // 클라이언트에게 방 참여 성공 메시지 전송 등 추가 처리
+        }
+
         talkRoom.handleMessage(session, talkMessage, objectMapper);
     }
 
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-        sessions.remove(session);
+        // 세션의 속성에서 roomId 조회
+        String roomId = (String) session.getAttributes().get("roomId");
+
+        if (roomId != null) {
+            // 해당 방에서 세션 제거 로직
+            TalkRoom talkRoom = talkRoomRepository.findById(roomId).orElse(null);
+            if (talkRoom != null) {
+                talkRoom.removeSession(session);
+            }
+        }
     }
 }

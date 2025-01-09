@@ -49,10 +49,15 @@ public class TalkRoom {
 
         // 현재 방의 모든 세션에 메시지 전송
         sessions.parallelStream().forEach(s -> {
-            try {
-                s.sendMessage(textMessage);
-            } catch (IOException e) {
-                e.printStackTrace();
+            if (s.isOpen()) {
+                try {
+                    s.sendMessage(textMessage);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                // 세션이 닫혀 있는 경우 처리 로직
+                System.out.println("세션이 닫혀 있습니다: " + s.getId());
             }
         });
     }

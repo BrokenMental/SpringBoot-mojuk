@@ -10,6 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class TalkMessage {
+    private String type;
     private String roomId;
     private String sender;
     private String content;
