@@ -3,7 +3,7 @@ package cs.club.mojuk.config.webSocket;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import cs.club.mojuk.entity.TalkRoom;
 import cs.club.mojuk.menu.talk.TalkMessage;
-import cs.club.mojuk.repository.TalkRoomRepository;
+import cs.club.mojuk.menu.talk.TalkService;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
@@ -14,12 +14,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class WebSocketTalkHandler extends TextWebSocketHandler {
-    private final TalkRoomRepository talkRoomRepository;
+    private final TalkService talkService;
     private final ObjectMapper objectMapper;
     private final Set<WebSocketSession> sessions = Collections.synchronizedSet(new HashSet<>());
 
-    public WebSocketTalkHandler(TalkRoomRepository talkRoomRepository, ObjectMapper objectMapper) {
-        this.talkRoomRepository = talkRoomRepository;
+    public WebSocketTalkHandler(TalkService talkService, ObjectMapper objectMapper) {
+        this.talkService = talkService;
         this.objectMapper = objectMapper;
     }
 
@@ -37,10 +37,9 @@ public class WebSocketTalkHandler extends TextWebSocketHandler {
         String roomId = talkMessage.getRoomId();
 
         //해당 방이 존재하지 않으면 생성
-        TalkRoom talkRoom = talkRoomRepository.findOrCreateRoom(roomId);
+        TalkRoom talkRoom = talkService.findOrCreateRoom(roomId); // 캐시와 DB 연동
 
         if ("JOIN".equals(talkMessage.getType())) {
-            //sessions.remove(session);
             talkRoom.addSession(session);
             // 세션에 roomId 저장
             session.getAttributes().put("roomId", roomId);
@@ -58,10 +57,7 @@ public class WebSocketTalkHandler extends TextWebSocketHandler {
 
         if (roomId != null) {
             // 해당 방에서 세션 제거 로직
-            TalkRoom talkRoom = talkRoomRepository.findById(roomId).orElse(null);
-            if (talkRoom != null) {
-                talkRoom.removeSession(session);
-            }
+            talkService.clearRoom(roomId);
         }
     }
 }

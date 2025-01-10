@@ -37,7 +37,7 @@ function displayMessage(message) {
 }
 
 // 서버로 메시지 전송
-function sendMessage(type, roomId, sender, content) {
+function sendMessage(roomId, sender, content, type) {
     if (isOpen(socket)) {
         if(!type) type = 'CONNECTING';
 
@@ -56,7 +56,7 @@ function sendMessage(type, roomId, sender, content) {
 
 function joinRoom(roomId) {
     // 서버에 특정 채팅방에 입장한다고 알리는 로직
-    sendMessage('JOIN', roomId, 'system', 'join');
+    sendMessage(roomId, 'system', 'join', 'JOIN');
 }
 
 //소캣 열린상태인지 확인

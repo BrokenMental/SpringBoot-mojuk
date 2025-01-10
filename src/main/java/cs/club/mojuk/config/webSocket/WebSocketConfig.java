@@ -1,7 +1,7 @@
 package cs.club.mojuk.config.webSocket;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import cs.club.mojuk.repository.TalkRoomRepository;
+import cs.club.mojuk.menu.talk.TalkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,13 +12,12 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
 @Configuration
 @EnableWebSocket
 public class WebSocketConfig implements WebSocketConfigurer {
-
-    private final TalkRoomRepository talkRoomRepository;
+    private final TalkService talkService;
     private final ObjectMapper objectMapper;
 
     @Autowired
-    public WebSocketConfig(TalkRoomRepository talkRoomRepository, ObjectMapper objectMapper) {
-        this.talkRoomRepository = talkRoomRepository;
+    public WebSocketConfig(TalkService talkService, ObjectMapper objectMapper) {
+        this.talkService = talkService;
         this.objectMapper = objectMapper;
     }
 
@@ -29,6 +28,6 @@ public class WebSocketConfig implements WebSocketConfigurer {
 
     @Bean
     public WebSocketTalkHandler webSocketTalkHandler() {
-        return new WebSocketTalkHandler(talkRoomRepository, objectMapper);
+        return new WebSocketTalkHandler(talkService, objectMapper);
     }
 }
