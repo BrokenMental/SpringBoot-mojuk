@@ -1,0 +1,34 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+.message-area {
+    width: 100%;
+    height: 100%;
+    padding: 1% 2%;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.message-area > div {
+    width: 100%;
+    height: 100%;
+    padding: 1% 2%;
+    box-sizing: border-box;
+    border: 1px solid black;
+    border-radius: 5px;
+    position: relative;
+}
+
+.message-contents-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    box-sizing: border-box;
+    display: none;
+}

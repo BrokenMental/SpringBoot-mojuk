@@ -5,14 +5,15 @@
     <title>mojuk talk</title>
     <link rel="stylesheet" th:href="@{/css/talk/talk.css}">
 </head>
+<th:block th:replace="~{include/header :: header}"></th:block>
 <body>
-    <section>
-        <div class="left-area">
-            <div class="user-list">
+    <section class="message-area">
+        <div class="message-list-area">
+            <div class="room-list" id="roomList">
 
             </div>
         </div>
-        <div class="right-area">
+        <div class="message-contents-area">
             <div class="user-message">
                 <div id="messages">
 
@@ -20,6 +21,7 @@
             </div>
         </div>
     </section>
+    <script th:src="@{/js/talk/talk.js}"></script>
     <script th:src="@{/js/talk/talk_option.js}"></script>
 </body>
 </html>

@@ -24,7 +24,7 @@ public class WebSocketTalkHandler extends TextWebSocketHandler {
     }
 
     @Override
-    public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+    public void afterConnectionEstablished(WebSocketSession session) {
         //sessions.add(session);
     }
 
@@ -51,7 +51,7 @@ public class WebSocketTalkHandler extends TextWebSocketHandler {
     }
 
     @Override
-    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) {
         // 세션의 속성에서 roomId 조회
         String roomId = (String) session.getAttributes().get("roomId");
 

@@ -4,6 +4,8 @@ import cs.club.mojuk.entity.TalkRoom;
 import cs.club.mojuk.repository.CachedTalkRoomRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TalkService {
     private final CachedTalkRoomRepository cachedTalkRoomRepository;
@@ -18,5 +20,9 @@ public class TalkService {
 
     public void clearRoom(String roomId) {
         cachedTalkRoomRepository.clearRoomCache(roomId);
+    }
+
+    public List<TalkRoom> getAllRooms() {
+        return cachedTalkRoomRepository.findAllRooms();
     }
 }
