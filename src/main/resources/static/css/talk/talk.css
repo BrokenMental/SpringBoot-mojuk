@@ -22,6 +22,9 @@ html, body {
     position: relative;
 }
 
+.message-list-area {
+}
+
 .message-contents-area {
     position: absolute;
     top: 0;
@@ -31,4 +34,24 @@ html, body {
     overflow: auto;
     box-sizing: border-box;
     display: none;
+}
+
+.room-btn-area {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 10px;
+}
+
+.room-btn-area > .btn {
+    display: flex;
+    flex: 1;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: x-large;
+}
+
+.btn:hover {
+    background-color: #c8c8c8;
 }
