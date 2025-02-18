@@ -23,3 +23,19 @@ const loadRooms = async () => {
 
 // 페이지 로드 시 채팅방 목록 가져오기
 //window.onload = loadRooms;
+
+document.querySelector('.btn-create-room').addEventListener('click', (e) => {
+    document.querySelector('.create-form').style.display = 'block';
+});
+
+document.querySelector('.btn-join-room').addEventListener('click', (e) => {
+    document.querySelector('.join-form').style.display = 'block';
+});
+
+document.querySelectorAll('.form-cancel').forEach((e) => {
+    e.addEventListener('click', (e) => {
+        document.querySelectorAll('.popup-background').forEach((e) => {
+            e.style.display = 'none';
+        });
+    });
+});

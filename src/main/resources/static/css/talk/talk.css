@@ -55,3 +55,50 @@ html, body {
 .btn:hover {
     background-color: #c8c8c8;
 }
+
+.popup-background {
+    display: none;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popup-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    height: 50%;
+    background-color: rgba(255, 255, 255);
+    padding: 5%;
+    box-sizing: border-box;
+}
+
+.form-input {
+    display: grid;
+    grid-template-columns: 25% auto;
+    min-width: 200px;
+    max-width: 90%;
+    text-align: center;
+    font-size: x-large;
+    margin: 8% auto;
+}
+
+.form-text {
+    border: 0;
+    border-bottom: 1px solid black;
+    font-size: large;
+}
+
+.form-button {
+    text-align: center;
+}
+
+.form-button > input[type=button] {
+    font-size: xx-large;
+    cursor: pointer;
+}
