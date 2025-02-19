@@ -41,5 +41,36 @@ document.querySelectorAll('.form-cancel').forEach((e) => {
 });
 
 document.querySelector('.btn-create-room-view').addEventListener('click', (e) => {
+    const createForm = document.createForm;
+    if (!createForm.createEmail.value) {
+        alert('이메일을 입력해주세요.');
+        createForm.createEmail.focus();
+        return;
+    }
+
+    const regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+
+    if (!createForm.createEmail.value.match(regExp)) {
+        alert('올바른 메일 형식으로 입력해주세요.');
+        createForm.createEmail.focus();
+        return;
+    }
+
+    if (!createForm.createPassword.value) {
+        alert('비밀번호를 입력해주세요.');
+        createForm.createPassword.focus();
+        return;
+    }
+
+    if (createForm.createPassword.value.length < 8) {
+        alert('비밀번호는 8자 이상으로 입력해주세요.');
+        createForm.createPassword.focus();
+        return;
+    }
+
     document.querySelector('.message-contents-area').style.display = 'block';
+});
+
+document.querySelector('.btn-content-close').addEventListener('click', (e) => {
+    document.querySelector('.message-contents-area').style.display = 'none';
 });

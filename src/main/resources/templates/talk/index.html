@@ -15,41 +15,54 @@
             </div>
         </div>
         <div class="message-contents-area">
+            <div class="contents-status">
+                <input class="btn btn-content-close" type="button" value="닫기">
+            </div>
             <div class="user-message">
                 <div id="messages">
 
                 </div>
             </div>
+            <div class="form-input">
+                <span>메시지</span>
+                <input class="form-text input-messages" placeholder="메시지를 입력하세요." type="text">
+                <input class="btn" type="button" value="입력">
+            </div>
         </div>
     </section>
     <section class="popup-form-area">
         <div class="popup-background create-form">
-            <div class="popup-form">
+            <form class="popup-form" name="createForm">
                 <div class="form-input">
-                    <span>email</span>
-                    <input class="form-text user-email" placeholder="email" type="text">
+                    <span>이메일</span>
+                    <input class="form-text user-email" name="createEmail" placeholder="이메일" type="text">
                 </div>
                 <div class="form-input">
-                    <span>방 번호</span>
-                    <input class="form-text user-room" placeholder="방 번호" type="text">
+                    <span>비밀번호</span>
+                    <input class="form-text user-room-password" name="createPassword" placeholder="비밀번호"
+                           type="password">
                 </div>
                 <div class="form-button">
                     <input class="form-submit btn btn-create-room-view" type="button" value="생성">
                     <input class="form-cancel btn" type="button" value="취소">
                 </div>
-            </div>
+            </form>
         </div>
         <div class="popup-background join-form">
-            <div class="popup-form">
+            <form class="popup-form" name="joinForm">
                 <div class="form-input">
                     <span>방 번호</span>
-                    <input class="user-room" placeholder="방 번호" type="text">
+                    <input class="user-room user-room" name="joinRoom" placeholder="방 번호" type="text">
+                </div>
+                <div class="form-input">
+                    <span>비밀번호</span>
+                    <input class="user-room-password" name="joinPassword" placeholder="비밀번호" type="text">
                 </div>
                 <div class="form-button">
                     <input class="form-submit" type="button" value="입장">
                     <input class="form-cancel" type="button" value="취소">
                 </div>
-            </div>
+            </form>
         </div>
     </section>
     <script th:src="@{/js/talk/talk.js}"></script>

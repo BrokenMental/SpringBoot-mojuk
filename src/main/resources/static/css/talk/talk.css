@@ -32,10 +32,18 @@ html, body {
     transform: translate(-50%, -50%);
     width: 90%;
     height: 90%;
-    overflow: auto;
     display: none;
     z-index: 100;
     background-color: white;
+}
+
+.user-message {
+    width: 100%;
+    height: 90%;
+}
+
+.messages {
+    overflow: auto;
 }
 
 .room-btn-area {
@@ -82,12 +90,26 @@ html, body {
 }
 
 .form-input {
-    display: grid;
-    grid-template-columns: 25% auto;
+    display: flex;
     min-width: 200px;
     max-width: 90%;
     text-align: center;
     font-size: x-large;
+}
+
+.form-input > span {
+    flex: 2;
+}
+
+.form-input > input:nth-child(2) {
+    flex: 5;
+}
+
+.form-input > input:nth-child(3) {
+    flex: 0.5;
+}
+
+.popup-form > .form-input {
     margin: 8% auto;
 }
 
@@ -104,4 +126,12 @@ html, body {
 .form-button > input[type=button] {
     font-size: xx-large;
     cursor: pointer;
+}
+
+.contents-status {
+    width: 100%;
+    text-align: right;
+}
+
+.btn-content-close {
 }
