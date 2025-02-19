@@ -39,3 +39,7 @@ document.querySelectorAll('.form-cancel').forEach((e) => {
         });
     });
 });
+
+document.querySelector('.btn-create-room-view').addEventListener('click', (e) => {
+    document.querySelector('.message-contents-area').style.display = 'block';
+});

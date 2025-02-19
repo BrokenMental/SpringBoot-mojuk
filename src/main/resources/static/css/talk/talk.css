@@ -13,27 +13,29 @@ html, body {
 }
 
 .message-area > div {
-    width: 100%;
-    height: 100%;
     padding: 1% 2%;
     box-sizing: border-box;
     border: 1px solid black;
     border-radius: 5px;
-    position: relative;
 }
 
 .message-list-area {
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
 
 .message-contents-area {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 90%;
     overflow: auto;
-    box-sizing: border-box;
     display: none;
+    z-index: 100;
+    background-color: white;
 }
 
 .room-btn-area {
@@ -64,6 +66,7 @@ html, body {
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
 }
 
 .popup-form {
