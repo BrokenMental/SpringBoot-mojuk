@@ -25,6 +25,9 @@ public class TalkRoom {
     @Column(name = "roomId")
     private String roomId;
 
+    private String email;
+    private String password;
+
     @Transient
     private final Set<WebSocketSession> sessions = ConcurrentHashMap.newKeySet();
 

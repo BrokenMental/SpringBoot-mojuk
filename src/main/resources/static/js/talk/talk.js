@@ -24,14 +24,17 @@ const loadRooms = async () => {
 // 페이지 로드 시 채팅방 목록 가져오기
 //window.onload = loadRooms;
 
+//생성 팝업 열기
 document.querySelector('.btn-create-room').addEventListener('click', (e) => {
     document.querySelector('.create-form').style.display = 'block';
 });
 
+//참여 팝업 열기
 document.querySelector('.btn-join-room').addEventListener('click', (e) => {
     document.querySelector('.join-form').style.display = 'block';
 });
 
+//팝업 닫기
 document.querySelectorAll('.form-cancel').forEach((e) => {
     e.addEventListener('click', (e) => {
         document.querySelectorAll('.popup-background').forEach((e) => {
@@ -40,6 +43,7 @@ document.querySelectorAll('.form-cancel').forEach((e) => {
     });
 });
 
+//생성 팝업에서 생성 버튼 클릭 시
 document.querySelector('.btn-create-room-view').addEventListener('click', (e) => {
     const createForm = document.createForm;
     if (!createForm.createEmail.value) {
@@ -68,9 +72,27 @@ document.querySelector('.btn-create-room-view').addEventListener('click', (e) =>
         return;
     }
 
-    document.querySelector('.message-contents-area').style.display = 'block';
+    createRoom({
+        mail: createForm.createEmail.value,
+        password: createForm.createPassword.value,
+    }).then(res => {
+        document.querySelector('.message-contents-area').style.display = 'block';
+    }).catch((err) => {
+        console.log('문제 발생');
+    });
 });
 
+const createRoom = async (inData) => {
+    try {
+        const response = await axios.post('/talk/create/room', inData);
+        return response.data;
+    } catch (error) {
+        console.error('채팅방 생성 중 오류 발생:', error);
+        return [];
+    }
+};
+
+//참여 방에서 닫기 버튼 클릭 시
 document.querySelector('.btn-content-close').addEventListener('click', (e) => {
     document.querySelector('.message-contents-area').style.display = 'none';
 });

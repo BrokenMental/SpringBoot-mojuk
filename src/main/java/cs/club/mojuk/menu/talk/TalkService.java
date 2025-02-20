@@ -25,4 +25,8 @@ public class TalkService {
     public List<TalkRoom> getAllRooms() {
         return cachedTalkRoomRepository.findAllRooms();
     }
+
+    public TalkRoom createRoom(TalkRoom room) {
+        return null;
+    }
 }
