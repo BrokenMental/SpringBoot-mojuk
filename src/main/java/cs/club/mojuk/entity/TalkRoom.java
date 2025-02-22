@@ -25,15 +25,22 @@ public class TalkRoom {
     @Column(name = "roomId")
     private String roomId;
 
+    @Column(nullable = false, unique = true)
     private String email;
+
+    @Column(nullable = false)
     private String password;
 
     @Transient
     private final Set<WebSocketSession> sessions = ConcurrentHashMap.newKeySet();
 
     // roomId를 매개변수로 받는 생성자
-    public TalkRoom(String roomId) {
+    public TalkRoom(String roomId,
+                    String email,
+                    String password) {
         this.roomId = roomId;
+        this.email = email;
+        this.password = password;
     }
 
     public void handleMessage(WebSocketSession session, TalkMessage message, ObjectMapper objectMapper) {

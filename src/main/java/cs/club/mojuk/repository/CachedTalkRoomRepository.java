@@ -17,9 +17,10 @@ public class CachedTalkRoomRepository {
     }
 
     public TalkRoom findOrCreateRoom(String roomId) {
-        return cache.computeIfAbsent(roomId, id ->
-            talkRoomRepository.findById(id).orElse(new TalkRoom(id))
-        );
+        /*return cache.computeIfAbsent(roomId, id ->
+            talkRoomRepository.findById(id).orElse(new TalkRoom(roomId))
+        );*/
+        return null;
     }
 
     public void clearRoomCache(String roomId) {
