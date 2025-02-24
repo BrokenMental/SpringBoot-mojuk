@@ -73,7 +73,7 @@ document.querySelector('.btn-create-room-view').addEventListener('click', (e) =>
     }
 
     createRoom({
-        mail: createForm.createEmail.value,
+        email: createForm.createEmail.value,
         password: createForm.createPassword.value,
     }).then(res => {
         document.querySelector('.message-contents-area').style.display = 'block';
@@ -82,15 +82,41 @@ document.querySelector('.btn-create-room-view').addEventListener('click', (e) =>
     });
 });
 
+//방 생성(email, password)
 const createRoom = async (inData) => {
     try {
-        const response = await axios.post('/talk/create/room', inData);
+        const response = await axios.post('/talk/room/create', inData);
+
+        console.log('채팅방 생성 성공:', response.data);
         return response.data;
     } catch (error) {
         console.error('채팅방 생성 중 오류 발생:', error);
         return [];
     }
 };
+
+//방 참여(roomId, password)
+const joinRoom = async (inData) => {
+    try {
+        const response = await axios.post('/talk/room/join', inData);
+
+        console.log('방 입장 성공:', response.data);
+        return response.data;
+    } catch (error) {
+        console.log('방 입장 실패:', error.response?.data || error.message);
+    }
+}
+
+//채팅 내역 가져오기
+const getTalkHistory = async (roomId) => {
+    try {
+        const response = await axios.get(`/talk/room/history/${roomId}`);
+        console.log("채팅 내역:", response.data);
+        return response.data;
+    } catch (error) {
+        console.error("채팅 내역 가져오기 실패:", error.response?.data || error.message);
+    }
+}
 
 //참여 방에서 닫기 버튼 클릭 시
 document.querySelector('.btn-content-close').addEventListener('click', (e) => {

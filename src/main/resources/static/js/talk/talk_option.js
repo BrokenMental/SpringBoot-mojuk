@@ -1,9 +1,9 @@
-function connect() {
+function connectWebSocket() {
     // WebSocket 연결 생성
     const socket = new WebSocket(`ws://${window.location.host}/ws/talk`);
 
     socket.onopen = function() {
-        console.log('서버와 연결되었습니다.');
+        console.log('서버 연결.');
         // 필요한 초기화 작업
     };
 
@@ -14,8 +14,8 @@ function connect() {
     };
 
     socket.onclose = function(event) {
-        console.error('WebSocket 연결이 닫혔습니다. 재연결을 시도 중...', event.code, event.reason);
-        setTimeout(connect, 1000); // 1초 후에 재연결 시도
+        console.error('WebSocket 연결 종료.');
+        //setTimeout(connect, 1000); // 1초 후에 재연결 시도
     };
 
     socket.onerror = function(error) {
@@ -26,8 +26,6 @@ function connect() {
     return socket;
 }
 
-let socket = connect();
-
 // 메시지를 화면에 추가하는 함수
 function displayMessage(message) {
     const messageContainer = document.getElementById('messages');
@@ -37,36 +35,13 @@ function displayMessage(message) {
 }
 
 // 서버로 메시지 전송
-function sendMessage(roomId, sender, content, type) {
-    if (isOpen(socket)) {
-        if(!type) type = 'CONNECTING';
+function sendMessage(socket, message) {
+    if (socket && socket.readyState === WebSocket.OPEN) {
 
-        socket.send(JSON.stringify({
-            type: type,
-            roomId: roomId,
-            sender: sender,
-            content: content
-        }));
+        socket.send(JSON.stringify(message));
     } else {
-        console.error('WebSocket 연결이 닫혀 있어 메시지를 전송할 수 없습니다.');
-        socket = connect();
+        console.error('WebSocket 연결되지 않음');
+        //socket = connect();
         // 필요에 따라 재연결 로직 추가
-    }
-}
-
-function joinRoom(roomId) {
-    // 서버에 특정 채팅방에 입장한다고 알리는 로직
-    sendMessage(roomId, 'system', 'join', 'JOIN');
-}
-
-//소캣 열린상태인지 확인
-function isOpen(ws) {
-    return ws.readyState === WebSocket.OPEN;
-}
-
-//서버 연결 종료 방지
-function sendPing() {
-    if (isOpen(socket)) {
-        socket.send(JSON.stringify({ type: 'ping' }));
     }
 }
