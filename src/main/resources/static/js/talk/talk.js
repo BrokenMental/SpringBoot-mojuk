@@ -75,6 +75,7 @@ document.querySelector('.btn-create-room-view').addEventListener('click', (e) =>
     createRoom({
         email: createForm.createEmail.value,
         password: createForm.createPassword.value,
+        roomId: '',
     }).then(res => {
         document.querySelector('.message-contents-area').style.display = 'block';
     }).catch((err) => {
@@ -86,12 +87,11 @@ document.querySelector('.btn-create-room-view').addEventListener('click', (e) =>
 const createRoom = async (inData) => {
     try {
         const response = await axios.post('/talk/room/create', inData);
-
         console.log('채팅방 생성 성공:', response.data);
         return response.data;
     } catch (error) {
         console.error('채팅방 생성 중 오류 발생:', error);
-        return [];
+        throw error;
     }
 };
 
@@ -104,6 +104,7 @@ const joinRoom = async (inData) => {
         return response.data;
     } catch (error) {
         console.log('방 입장 실패:', error.response?.data || error.message);
+        throw error;
     }
 }
 

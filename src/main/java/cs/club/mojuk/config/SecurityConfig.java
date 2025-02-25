@@ -2,62 +2,65 @@ package cs.club.mojuk.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
 
-@Configuration  // 스프링 설정 클래스로 지정
-@EnableWebSecurity  // 웹 보안을 활성화
+@Configuration
+@EnableWebSecurity
 public class SecurityConfig {
 
-    /*@Autowired
-    private CustomUserDetailsService userDetailsService;  // CustomUserDetailsService 주입
-    */
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();  // 비밀번호를 암호화하기 위한 BCryptPasswordEncoder 빈 등록
+        return new BCryptPasswordEncoder();
     }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(authorize -> authorize
-                //접근 허용
+        // CSRF 토큰 저장소 설정 - 쿠키 기반, JavaScript에서 접근 가능하도록 HttpOnly=false
+        CookieCsrfTokenRepository tokenRepository = CookieCsrfTokenRepository.withHttpOnlyFalse();
+        tokenRepository.setCookieName("XSRF-TOKEN");
+        tokenRepository.setHeaderName("X-XSRF-TOKEN");
+
+        // CSRF 토큰 요청 핸들러 설정
+        CsrfTokenRequestAttributeHandler requestHandler = new CsrfTokenRequestAttributeHandler();
+        // 요청 속성 이름 설정
+        requestHandler.setCsrfRequestAttributeName("_csrf");
+
+        http
+                .csrf(csrf -> csrf
+                        .csrfTokenRepository(tokenRepository)
+                        .csrfTokenRequestHandler(requestHandler)
+                )
+                .sessionManagement(session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
+                )
+                .authorizeHttpRequests(authorize -> authorize
                 .requestMatchers(
-                        // "/", 페이지 이동 접근
-                        "/history",
-
-                        // "/css/**", "/js/**" 정적 접근
-                        "/assets/**", "/css/**", "/js/**", "img/**",
-
-                        //history 페이지 접근
+                        "/", "/csrf-token",
+                        "/assets/**", "/css/**", "/js/**", "/img/**",
                         "/history/**",
-
-                        //talk 페이지 접근
-                        "/talk/**",
-
-                        //websocket 접근
+                        "/talk/**", "/talk/room/**",
                         "/ws/**"
                 ).permitAll()
-                // 나머지 요청은 인증된 사용자만 접근 가능
                 .anyRequest().authenticated()
-        )
-        .formLogin(form -> form
-                .loginPage("/")  // 커스텀 로그인 페이지 경로 설정
-                .permitAll()  // 모든 사용자에게 로그인 페이지 접근 허용
-                .defaultSuccessUrl("/", true)  // 로그인 성공 시 리다이렉트할 경로 설정
-        )
-        .logout(logout -> logout
-                .permitAll()  // 모든 사용자에게 로그아웃 허용
-        );
+                )
+                .httpBasic(Customizer.withDefaults())
+                .formLogin(form -> form
+                        .loginPage("/")
+                        .permitAll()
+                        .defaultSuccessUrl("/", false)
+                )
+                .logout(logout -> logout
+                        .permitAll()
+                );
 
-        return http.build();  // 보안 설정을 적용한 SecurityFilterChain 반환
+        return http.build();
     }
-
-    /*@Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        // CustomUserDetailsService와 passwordEncoder를 사용해 인증 관리자를 설정
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-    }*/
 }

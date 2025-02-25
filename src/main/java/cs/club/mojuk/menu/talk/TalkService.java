@@ -63,7 +63,7 @@ public class TalkService {
     }
 
     public List<String> getChatHistory(String roomId) {
-        return talkMessageRepository.findByRoomIdOrderByRoomIdAsc(roomId)
+        return talkMessageRepository.findByRoomIdOrderByIdAsc(roomId)
                 .stream()
                 .map(TalkMessage::getMessage)
                 .collect(Collectors.toList());

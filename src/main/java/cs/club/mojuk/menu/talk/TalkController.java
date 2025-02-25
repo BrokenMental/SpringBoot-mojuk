@@ -6,7 +6,10 @@ import cs.club.mojuk.entity.TalkRoom;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -35,8 +38,8 @@ public class TalkController {
 
     @ResponseBody
     @PostMapping("/talk/room/join")
-    public ResponseEntity<TalkRoomResponse> joinRoom(@RequestParam String roomId,
-                                                     @RequestParam String password) {
-        return ResponseEntity.ok(talkService.joinRoom(roomId, password));
+    public ResponseEntity<TalkRoomResponse> joinRoom(@RequestBody TalkRoomRequest request) {
+        // Request 객체로 변경하여 JSON 요청을 처리할 수 있도록 함
+        return ResponseEntity.ok(talkService.joinRoom(request.roomId(), request.password()));
     }
 }

@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface TalkMessageRepository extends JpaRepository<TalkMessage, Long> {
-    List<TalkMessage> findByRoomIdOrderByRoomIdAsc(String roomId);
+    List<TalkMessage> findByRoomIdOrderByIdAsc(String roomId);
 }
