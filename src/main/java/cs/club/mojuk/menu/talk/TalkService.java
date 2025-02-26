@@ -2,7 +2,6 @@ package cs.club.mojuk.menu.talk;
 
 import cs.club.mojuk.dto.TalkRoomRequest;
 import cs.club.mojuk.dto.TalkRoomResponse;
-import cs.club.mojuk.entity.TalkMessage;
 import cs.club.mojuk.entity.TalkRoom;
 import cs.club.mojuk.repository.CachedTalkRoomRepository;
 import cs.club.mojuk.repository.TalkMessageRepository;
@@ -11,7 +10,9 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -62,10 +63,16 @@ public class TalkService {
         return new TalkRoomResponse(roomId, "방에 입장했습니다.");
     }
 
-    public List<String> getChatHistory(String roomId) {
+    public List<Object> getChatHistory(String roomId) {
         return talkMessageRepository.findByRoomIdOrderByIdAsc(roomId)
                 .stream()
-                .map(TalkMessage::getMessage)
+                .map(msg -> {
+                    Map<String, Object> result = new HashMap<>();
+                    result.put("sender", msg.getSender() != null ? msg.getSender() : "시스템");
+                    result.put("message", msg.getMessage());
+                    result.put("timestamp", msg.getCreatedAt());
+                    return result;
+                })
                 .collect(Collectors.toList());
     }
 

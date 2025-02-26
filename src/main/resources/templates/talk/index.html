@@ -19,14 +19,14 @@
                 <input class="btn btn-content-close" type="button" value="닫기">
             </div>
             <div class="user-message">
-                <div id="messages">
+                <div class="message-container" id="messages">
 
                 </div>
             </div>
             <div class="form-input">
                 <span>메시지</span>
                 <input class="form-text input-messages" placeholder="메시지를 입력하세요." type="text">
-                <input class="btn" type="button" value="입력">
+                <input class="btn btn-chat-enter" type="button" value="입력">
             </div>
         </div>
     </section>
@@ -52,19 +52,21 @@
             <form class="popup-form" name="joinForm">
                 <div class="form-input">
                     <span>방 번호</span>
-                    <input class="user-room user-room" name="joinRoom" placeholder="방 번호" type="text">
+                    <input class="user-room user-room" name="joinRoomId" placeholder="방 번호" type="text">
                 </div>
                 <div class="form-input">
                     <span>비밀번호</span>
                     <input class="user-room-password" name="joinPassword" placeholder="비밀번호" type="password">
                 </div>
                 <div class="form-button">
-                    <input class="form-submit" type="button" value="입장">
+                    <input class="form-submit btn btn-join-room-view" type="button" value="입장">
                     <input class="form-cancel" type="button" value="취소">
                 </div>
             </form>
         </div>
     </section>
+    <input id="currentRoomId" type="hidden" value="">
+    <input id="userEmail" type="hidden" value="">
     <th:block th:replace="~{include/header :: header-util-area}"></th:block>
     <script th:src="@{/js/talk/talk.js}"></script>
     <script th:src="@{/js/talk/talk_option.js}"></script>

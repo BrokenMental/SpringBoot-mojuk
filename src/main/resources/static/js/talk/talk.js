@@ -1,28 +1,26 @@
-const getRooms = async () => {
-    try {
-        const response = await axios.get('/talk/rooms');
-        return response.data;
-    } catch (error) {
-        console.error('채팅방 목록을 가져오는 중 오류 발생:', error);
-        return [];
-    }
-};
+// 방 입장 성공 후 호출되는 함수
+function onRoomJoined(roomId, email) {
+    // 방 ID와 사용자 이메일 저장 (숨겨진 필드)
+    document.getElementById('currentRoomId').value = roomId;
+    document.getElementById('userEmail').value = email;
 
-const loadRooms = async () => {
-    const rooms = await getRooms();
-    const roomContainer = document.getElementById('roomList');
-    roomContainer.innerHTML = ''; // 기존 목록 초기화
+    // WebSocket 연결
+    connectWebSocket(roomId);
 
-    rooms.forEach(room => {
-        const roomElement = document.createElement('div');
-        roomElement.textContent = `방 ID: ${room.roomId}`;
-        roomElement.onclick = () => joinRoom(room.roomId); // 클릭 시 입장
-        roomContainer.appendChild(roomElement);
+    // 채팅 영역 표시
+    document.querySelector('.message-contents-area').style.display = 'block';
+
+    // 채팅 내역 가져오기
+    getTalkHistory(roomId).then(messages => {
+        // 기존 메시지 초기화
+        document.getElementById('messages').innerHTML = '';
+
+        // 메시지 표시
+        messages.forEach(message => {
+            displayMessage(message);
+        });
     });
-};
-
-// 페이지 로드 시 채팅방 목록 가져오기
-//window.onload = loadRooms;
+}
 
 //생성 팝업 열기
 document.querySelector('.btn-create-room').addEventListener('click', (e) => {
@@ -77,10 +75,75 @@ document.querySelector('.btn-create-room-view').addEventListener('click', (e) =>
         password: createForm.createPassword.value,
         roomId: '',
     }).then(res => {
-        document.querySelector('.message-contents-area').style.display = 'block';
+        // 방 생성 성공 시 방에 입장
+        onRoomJoined(res.roomId, createForm.createEmail.value);
+
+        // 팝업 닫기
+        document.querySelector('.create-form').style.display = 'none';
     }).catch((err) => {
-        console.log('문제 발생');
+        console.log('방 생성 중 문제 발생:', err);
+        alert('방 생성에 실패했습니다.');
     });
+});
+
+//참여 팝업에서 입장 버튼 클릭 시
+document.querySelector('.btn-join-room-view').addEventListener('click', (e) => {
+    const joinForm = document.joinForm;
+    if (!joinForm.joinRoomId.value) {
+        alert('방 번호를 입력해주세요.');
+        joinForm.joinRoomId.focus();
+        return;
+    }
+
+    if (!joinForm.joinPassword.value) {
+        alert('비밀번호를 입력해주세요.');
+        joinForm.joinPassword.focus();
+        return;
+    }
+
+    joinRoom({
+        roomId: joinForm.joinRoomId.value,
+        password: joinForm.joinPassword.value
+    }).then(res => {
+        // 방 입장 성공 시 WebSocket 연결
+        onRoomJoined(joinForm.joinRoomId.value, joinForm.joinEmail?.value || '참여자');
+
+        // 팝업 닫기
+        document.querySelector('.join-form').style.display = 'none';
+    }).catch((err) => {
+        console.log('방 입장 중 문제 발생:', err);
+        alert('방 입장에 실패했습니다.');
+    });
+});
+
+// 메시지 전송 관련 이벤트 리스너
+document.querySelector('.input-messages').addEventListener('keydown', (e) => {
+    if (e.keyCode === 13 || e.key === 'Enter') {
+        const content = e.target.value.trim();
+        if (content) {
+            sendMessage(content);
+        }
+        e.preventDefault(); // 폼 제출 방지
+    }
+});
+
+document.querySelector('.btn-chat-enter').addEventListener('click', (e) => {
+    const inputMessages = document.querySelector('.input-messages');
+    const content = inputMessages.value.trim();
+    if (content) {
+        sendMessage(content);
+    }
+});
+
+//참여 방에서 닫기 버튼 클릭 시
+document.querySelector('.btn-content-close').addEventListener('click', (e) => {
+    document.querySelector('.message-contents-area').style.display = 'none';
+
+    // WebSocket 연결 종료
+    if (socket) {
+        socket.close();
+        socket = null;
+    }
 });
 
 //방 생성(email, password)
@@ -118,8 +181,3 @@ const getTalkHistory = async (roomId) => {
         console.error("채팅 내역 가져오기 실패:", error.response?.data || error.message);
     }
 }
-
-//참여 방에서 닫기 버튼 클릭 시
-document.querySelector('.btn-content-close').addEventListener('click', (e) => {
-    document.querySelector('.message-contents-area').style.display = 'none';
-});

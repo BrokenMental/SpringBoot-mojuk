@@ -6,10 +6,7 @@ import cs.club.mojuk.entity.TalkRoom;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,7 +17,7 @@ public class TalkController {
     private final TalkService talkService;
 
     @GetMapping("/talk")
-    public String history() {
+    public String talk() {
         return "talk/index";
     }
 
@@ -41,5 +38,11 @@ public class TalkController {
     public ResponseEntity<TalkRoomResponse> joinRoom(@RequestBody TalkRoomRequest request) {
         // Request 객체로 변경하여 JSON 요청을 처리할 수 있도록 함
         return ResponseEntity.ok(talkService.joinRoom(request.roomId(), request.password()));
+    }
+
+    @ResponseBody
+    @GetMapping("/talk/room/history/{roomId}")
+    public ResponseEntity<List<Object>> getChatHistory(@PathVariable("roomId") String roomId) {
+        return ResponseEntity.ok(talkService.getChatHistory(roomId));
     }
 }

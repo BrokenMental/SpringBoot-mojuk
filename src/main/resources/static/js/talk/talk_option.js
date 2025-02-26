@@ -1,9 +1,16 @@
-function connectWebSocket() {
+let socket = null;
+
+function connectWebSocket(roomId) {
+    // 기존 연결이 있으면 닫기
+    if (socket && socket.readyState === WebSocket.OPEN) {
+        socket.close();
+    }
+
     // WebSocket 연결 생성
-    const socket = new WebSocket(`ws://${window.location.host}/ws/talk`);
+    socket = new WebSocket(`ws://${window.location.host}/ws/talk/${roomId}`);
 
     socket.onopen = function() {
-        console.log('서버 연결.');
+        console.log(`방 ${roomId}에 연결되었습니다.`);
         // 필요한 초기화 작업
     };
 
@@ -14,8 +21,9 @@ function connectWebSocket() {
     };
 
     socket.onclose = function(event) {
-        console.error('WebSocket 연결 종료.');
-        //setTimeout(connect, 1000); // 1초 후에 재연결 시도
+        console.log(`방 ${roomId} 연결 종료됨:`, event);
+        //자동 재연결
+        //setTimeout(() => connectWebSocket(roomId), 1000);
     };
 
     socket.onerror = function(error) {
@@ -28,20 +36,37 @@ function connectWebSocket() {
 
 // 메시지를 화면에 추가하는 함수
 function displayMessage(message) {
-    const messageContainer = document.getElementById('messages');
-    const messageElement = document.createElement('div');
-    messageElement.textContent = `${message.sender}: ${message.content}`;
-    messageContainer.appendChild(messageElement);
+    const msgContainer = document.getElementById('messages');
+    const msgElement = document.createElement('div');
+
+    // 메시지 형식에 따라 표시
+    if (message.sender) {
+        msgElement.textContent = `${message.sender}: ${message.content}`;
+    } else {
+        msgElement.textContent = message; // 단순 문자열일 경우
+    }
+
+    msgContainer.appendChild(msgElement);
+
+    // 스크롤을 항상 최신 메시지로 이동
+    msgContainer.scrollTop = msgContainer.scrollHeight;
 }
 
-// 서버로 메시지 전송
-function sendMessage(socket, message) {
-    if (socket && socket.readyState === WebSocket.OPEN) {
-
-        socket.send(JSON.stringify(message));
-    } else {
-        console.error('WebSocket 연결되지 않음');
-        //socket = connect();
-        // 필요에 따라 재연결 로직 추가
+// 서버로 메시지 전송(message)
+function sendMessage(message) {
+    if (!socket || socket.readyState !== WebSocket.OPEN) {
+        console.error('WebSocket 이 연결되어 있지 않습니다.');
+        return;
     }
+
+    // 현재 활성화된 방 ID 가져오기
+    const currentRoomId = document.getElementById('currentRoomId').value;
+
+    const msg = {
+        roomId: currentRoomId,
+        sender: document.getElementById('userEmail').value || '익명',
+        message: message
+    };
+
+    socket.send(JSON.stringify(msg));
 }
