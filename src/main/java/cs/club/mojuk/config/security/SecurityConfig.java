@@ -1,4 +1,4 @@
-package cs.club.mojuk.config;
+package cs.club.mojuk.config.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +15,14 @@ import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
+    private final CustomAuthenticationEntryPoint authenticationEntryPoint;
+    private final CustomAccessDeniedHandler accessDeniedHandler;
+
+    public SecurityConfig(CustomAuthenticationEntryPoint authenticationEntryPoint, CustomAccessDeniedHandler accessDeniedHandler) {
+        this.authenticationEntryPoint = authenticationEntryPoint;
+        this.accessDeniedHandler = accessDeniedHandler;
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -43,22 +51,28 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(authorize -> authorize
                 .requestMatchers(
-                        "/", "/csrf-token",
+                        "/", "/csrf/token",
+                        "/favicon.ico",
                         "/assets/**", "/css/**", "/js/**", "/img/**",
                         "/history/**",
-                        "/talk/**", "/talk/room/**",
+                        "/talk/**",
                         "/ws/**"
                 ).permitAll()
                 .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults())
-                .formLogin(form -> form
+                /*.formLogin(form -> form
                         .loginPage("/")
                         .permitAll()
                         .defaultSuccessUrl("/", false)
-                )
+                )*/
+                .formLogin(form -> form.disable())
                 .logout(logout -> logout
                         .permitAll()
+                )
+                .exceptionHandling(ex -> ex
+                        .authenticationEntryPoint(authenticationEntryPoint) // 인증 실패 시 JSON 반환
+                        .accessDeniedHandler(accessDeniedHandler) // 권한 부족 시 JSON 반환
                 );
 
         return http.build();
