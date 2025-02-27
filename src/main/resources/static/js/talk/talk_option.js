@@ -35,15 +35,15 @@ function connectWebSocket(roomId) {
 }
 
 // 메시지를 화면에 추가하는 함수
-function displayMessage(message) {
+function displayMessage(msg) {
     const msgContainer = document.getElementById('messages');
     const msgElement = document.createElement('div');
 
     // 메시지 형식에 따라 표시
-    if (message.sender) {
-        msgElement.textContent = `${message.sender}: ${message.content}`;
+    if (msg.sender) {
+        msgElement.textContent = `${msg.sender}: ${msg.message}`;
     } else {
-        msgElement.textContent = message; // 단순 문자열일 경우
+        msgElement.textContent = msg; // 단순 문자열일 경우
     }
 
     msgContainer.appendChild(msgElement);

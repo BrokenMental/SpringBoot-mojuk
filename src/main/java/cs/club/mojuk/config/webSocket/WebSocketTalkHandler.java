@@ -54,10 +54,10 @@ public class WebSocketTalkHandler extends TextWebSocketHandler {
 
         // 보낸 사람 정보 및 내용 추출
         String sender = (String) messageMap.get("sender");
-        String content = (String) messageMap.get("content");
+        String msg = (String) messageMap.get("message");
 
         // 메시지 객체 생성
-        TalkMessage talkMessage = new TalkMessage(roomId, sender, content);
+        TalkMessage talkMessage = new TalkMessage(roomId, sender, msg);
 
         // DB에 채팅 저장
         talkMessageRepository.save(talkMessage);
@@ -66,7 +66,7 @@ public class WebSocketTalkHandler extends TextWebSocketHandler {
         String outputMessage = objectMapper.writeValueAsString(
                 Map.of(
                         "sender", sender,
-                        "content", content,
+                        "message", msg,
                         "timestamp", talkMessage.getCreatedAt()
                 )
         );

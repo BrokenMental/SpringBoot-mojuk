@@ -119,9 +119,10 @@ document.querySelector('.btn-join-room-view').addEventListener('click', (e) => {
 // 메시지 전송 관련 이벤트 리스너
 document.querySelector('.input-messages').addEventListener('keydown', (e) => {
     if (e.keyCode === 13 || e.key === 'Enter') {
-        const content = e.target.value.trim();
-        if (content) {
-            sendMessage(content);
+        const msg = e.target.value.trim();
+        if (msg) {
+            sendMessage(msg);
+            e.target.value = '';
         }
         e.preventDefault(); // 폼 제출 방지
     }
@@ -129,9 +130,10 @@ document.querySelector('.input-messages').addEventListener('keydown', (e) => {
 
 document.querySelector('.btn-chat-enter').addEventListener('click', (e) => {
     const inputMessages = document.querySelector('.input-messages');
-    const content = inputMessages.value.trim();
-    if (content) {
-        sendMessage(content);
+    const msg = inputMessages.value.trim();
+    if (msg) {
+        sendMessage(msg);
+        inputMessages.value = '';
     }
 });
 
