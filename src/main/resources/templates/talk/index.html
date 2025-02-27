@@ -52,7 +52,11 @@
             <form class="popup-form" name="joinForm">
                 <div class="form-input">
                     <span>방 번호</span>
-                    <input class="user-room user-room" name="joinRoomId" placeholder="방 번호" type="text">
+                    <input class="user-room" name="joinRoomId" placeholder="방 번호" type="text">
+                </div>
+                <div class="form-input">
+                    <span>이메일</span>
+                    <input class="user-room-email" name="joinEmail" placeholder="이메일" type="text">
                 </div>
                 <div class="form-input">
                     <span>비밀번호</span>
@@ -67,6 +71,7 @@
     </section>
     <input id="currentRoomId" type="hidden" value="">
     <input id="userEmail" type="hidden" value="">
+    <input id="userType" type="hidden" value="">
     <th:block th:replace="~{include/header :: header-util-area}"></th:block>
     <script th:src="@{/js/talk/talk.js}"></script>
     <script th:src="@{/js/talk/talk_option.js}"></script>

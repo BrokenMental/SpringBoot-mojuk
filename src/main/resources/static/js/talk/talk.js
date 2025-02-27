@@ -1,8 +1,9 @@
-// 방 입장 성공 후 호출되는 함수
-function onRoomJoined(roomId, email) {
+// 방 입장 성공 후 호출(방 번호, 유저 이메일, 방장 여부)
+function onRoomJoined(roomId, email, type) {
     // 방 ID와 사용자 이메일 저장 (숨겨진 필드)
     document.getElementById('currentRoomId').value = roomId;
     document.getElementById('userEmail').value = email;
+    document.getElementById('userType').value = type;
 
     // WebSocket 연결
     connectWebSocket(roomId);
@@ -71,12 +72,12 @@ document.querySelector('.btn-create-room-view').addEventListener('click', (e) =>
     }
 
     createRoom({
-        email: createForm.createEmail.value,
-        password: createForm.createPassword.value,
+        email: createForm.createEmail.value.trim(),
+        password: createForm.createPassword.value.trim(),
         roomId: '',
     }).then(res => {
         // 방 생성 성공 시 방에 입장
-        onRoomJoined(res.roomId, createForm.createEmail.value);
+        onRoomJoined(res.roomId, createForm.createEmail.value, res.data.type);
 
         // 팝업 닫기
         document.querySelector('.create-form').style.display = 'none';
@@ -95,6 +96,20 @@ document.querySelector('.btn-join-room-view').addEventListener('click', (e) => {
         return;
     }
 
+    if (!joinForm.joinEmail.value) {
+        alert('이메일을 입력해주세요.');
+        joinForm.joinEmail.focus();
+        return;
+    }
+
+    const regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+
+    if (!joinForm.joinEmail.value.match(regExp)) {
+        alert('올바른 메일 형식으로 입력해주세요.');
+        joinForm.joinEmail.focus();
+        return;
+    }
+
     if (!joinForm.joinPassword.value) {
         alert('비밀번호를 입력해주세요.');
         joinForm.joinPassword.focus();
@@ -102,11 +117,12 @@ document.querySelector('.btn-join-room-view').addEventListener('click', (e) => {
     }
 
     joinRoom({
-        roomId: joinForm.joinRoomId.value,
-        password: joinForm.joinPassword.value
+        roomId: joinForm.joinRoomId.value.trim(),
+        email: joinForm.joinEmail.value.trim(),
+        password: joinForm.joinPassword.value.trim()
     }).then(res => {
         // 방 입장 성공 시 WebSocket 연결
-        onRoomJoined(joinForm.joinRoomId.value, joinForm.joinEmail?.value || '참여자');
+        onRoomJoined(joinForm.joinRoomId.value, joinForm.joinEmail.value, res.data.type);
 
         // 팝업 닫기
         document.querySelector('.join-form').style.display = 'none';

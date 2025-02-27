@@ -49,18 +49,18 @@ public class TalkService {
         TalkRoom talkRoom = new TalkRoom(roomId, request.email(), request.password());
         talkRoomRepository.save(talkRoom);
 
-        return new TalkRoomResponse(roomId, "방이 생성되었습니다.");
+        return new TalkRoomResponse(roomId, "방이 생성되었습니다.", managerYN(request, talkRoom));
     }
 
-    public TalkRoomResponse joinRoom(String roomId, String password) {
-        TalkRoom talkRoom = talkRoomRepository.findByRoomId(roomId)
+    public TalkRoomResponse joinRoom(TalkRoomRequest request) {
+        TalkRoom talkRoom = talkRoomRepository.findByRoomId(request.roomId())
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 방입니다."));
 
-        if(!talkRoom.getPassword().equals(password)) {
+        if (!talkRoom.getPassword().equals(request.password())) {
             throw new IllegalArgumentException("비밀번호가 틀렸습니다.");
         }
 
-        return new TalkRoomResponse(roomId, "방에 입장했습니다.");
+        return new TalkRoomResponse(request.roomId(), "방에 입장했습니다.", managerYN(request, talkRoom));
     }
 
     public List<Object> getChatHistory(String roomId) {
@@ -79,5 +79,9 @@ public class TalkService {
     private String generateRandomRoomId() {
         //System.currentTimeMillis();
         return UUID.randomUUID().toString().substring(0, 8);
+    }
+
+    private int managerYN(TalkRoomRequest request, TalkRoom talkRoom) {
+        return request.email() == talkRoom.getEmail() ? 1 : 0;
     }
 }

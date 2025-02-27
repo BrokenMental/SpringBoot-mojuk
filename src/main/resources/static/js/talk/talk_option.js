@@ -64,7 +64,7 @@ function sendMessage(message) {
 
     const msg = {
         roomId: currentRoomId,
-        sender: document.getElementById('userEmail').value || '익명',
+        sender: document.getElementById('userEmail').value,
         message: message
     };
 

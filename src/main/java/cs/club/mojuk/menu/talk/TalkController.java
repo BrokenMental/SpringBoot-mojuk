@@ -37,7 +37,7 @@ public class TalkController {
     @PostMapping("/talk/room/join")
     public ResponseEntity<TalkRoomResponse> joinRoom(@RequestBody TalkRoomRequest request) {
         // Request 객체로 변경하여 JSON 요청을 처리할 수 있도록 함
-        return ResponseEntity.ok(talkService.joinRoom(request.roomId(), request.password()));
+        return ResponseEntity.ok(talkService.joinRoom(request));
     }
 
     @ResponseBody
