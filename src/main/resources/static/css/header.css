@@ -43,7 +43,7 @@ ul li {
 }
 
 .btn-back-circle {
-    z-index: 1000;
+    z-index: 10;
     display: block !important;
     position: absolute;
     border-radius: 50%;

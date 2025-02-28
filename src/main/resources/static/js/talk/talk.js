@@ -75,9 +75,9 @@ document.querySelector('.btn-create-room-view').addEventListener('click', (e) =>
         email: createForm.createEmail.value.trim(),
         password: createForm.createPassword.value.trim(),
         roomId: '',
-    }).then(res => {
+    }).then(resData => {
         // 방 생성 성공 시 방에 입장
-        onRoomJoined(res.roomId, createForm.createEmail.value, res.data.type);
+        onRoomJoined(resData.roomId, createForm.createEmail.value, resData.type);
 
         // 팝업 닫기
         document.querySelector('.create-form').style.display = 'none';
@@ -120,9 +120,9 @@ document.querySelector('.btn-join-room-view').addEventListener('click', (e) => {
         roomId: joinForm.joinRoomId.value.trim(),
         email: joinForm.joinEmail.value.trim(),
         password: joinForm.joinPassword.value.trim()
-    }).then(res => {
+    }).then(resData => {
         // 방 입장 성공 시 WebSocket 연결
-        onRoomJoined(joinForm.joinRoomId.value, joinForm.joinEmail.value, res.data.type);
+        onRoomJoined(joinForm.joinRoomId.value, joinForm.joinEmail.value, resData.type);
 
         // 팝업 닫기
         document.querySelector('.join-form').style.display = 'none';

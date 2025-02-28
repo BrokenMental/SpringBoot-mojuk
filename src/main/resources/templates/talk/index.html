@@ -15,18 +15,21 @@
             </div>
         </div>
         <div class="message-contents-area">
-            <div class="contents-status">
-                <input class="btn btn-content-close" type="button" value="닫기">
-            </div>
-            <div class="user-message">
-                <div class="message-container" id="messages">
-
+            <div class="message-content-container">
+                <div class="contents-status">
+                    <input id="currentRoomId" readonly type="text" value="">
+                    <input class="btn btn-content-close" type="button" value="닫기">
                 </div>
-            </div>
-            <div class="form-input">
-                <span>메시지</span>
-                <input class="form-text input-messages" placeholder="메시지를 입력하세요." type="text">
-                <input class="btn btn-chat-enter" type="button" value="입력">
+                <div class="user-message">
+                    <div class="message-container" id="messages">
+
+                    </div>
+                </div>
+                <div class="form-input">
+                    <span>메시지</span>
+                    <input class="form-text input-messages" placeholder="메시지를 입력하세요." type="text">
+                    <input class="btn btn-chat-enter" type="button" value="입력">
+                </div>
             </div>
         </div>
     </section>
@@ -69,7 +72,6 @@
             </form>
         </div>
     </section>
-    <input id="currentRoomId" type="hidden" value="">
     <input id="userEmail" type="hidden" value="">
     <input id="userType" type="hidden" value="">
     <th:block th:replace="~{include/header :: header-util-area}"></th:block>

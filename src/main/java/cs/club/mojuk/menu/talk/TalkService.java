@@ -68,7 +68,7 @@ public class TalkService {
                 .stream()
                 .map(msg -> {
                     Map<String, Object> result = new HashMap<>();
-                    result.put("sender", msg.getSender() != null ? msg.getSender() : "시스템");
+                    result.put("sender", msg.getSender() != null ? msg.getSender() : "system");
                     result.put("message", msg.getMessage());
                     result.put("timestamp", msg.getCreatedAt());
                     return result;
@@ -82,6 +82,6 @@ public class TalkService {
     }
 
     private int managerYN(TalkRoomRequest request, TalkRoom talkRoom) {
-        return request.email() == talkRoom.getEmail() ? 1 : 0;
+        return request.email().equals(talkRoom.getEmail()) ? 1 : 0;
     }
 }

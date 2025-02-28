@@ -24,6 +24,7 @@ function connectWebSocket(roomId) {
         console.log(`방 ${roomId} 연결 종료됨:`, event);
         //자동 재연결
         //setTimeout(() => connectWebSocket(roomId), 1000);
+        document.querySelector('.message-contents-area').style.display = 'none';
     };
 
     socket.onerror = function(error) {
@@ -61,11 +62,13 @@ function sendMessage(message) {
 
     // 현재 활성화된 방 ID 가져오기
     const currentRoomId = document.getElementById('currentRoomId').value;
+    const userEmail = document.getElementById('userEmail').value;
+    const userType = document.getElementById('userType').value;
 
     const msg = {
         roomId: currentRoomId,
-        sender: document.getElementById('userEmail').value,
-        message: message
+        sender: userType == 1 ? '방장' : '참여자',
+        message: message,
     };
 
     socket.send(JSON.stringify(msg));
